@@ -1,6 +1,6 @@
 ## yys-tool-react.
 
- just test my react skill here
+just test my react skill here
 
 ###
 
@@ -26,7 +26,7 @@ react + recoil + dexie + antd
 ```bash
 PUBLIC_URL=""
 
-# and you can config local dev port by add this:
+# and you can config local dev port by add this
 PORT=8888
 
 ```
