@@ -1,0 +1,65 @@
+{
+  "name": "yys-tool-react",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://wu67.github.io/yys-tool-react",
+  "dependencies": {
+    "antd": "^4.23.6",
+    "classnames": "^2.3.2",
+    "dayjs": "^1.11.5",
+    "dexie": "^3.2.2",
+    "nzh": "^1.0.8",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.4.2",
+    "recoil": "^0.7.6"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.2",
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
+    "dotenv": "^16.0.3",
+    "dotenv-cli": "^6.0.0",
+    "eslint": "^8.25.0",
+    "eslint-config-prettier": "^8.5.0",
+    "http-proxy-middleware": "^2.0.6",
+    "prettier": "^2.7.1",
+    "react-scripts": "5.0.1",
+    "sass": "^1.55.0",
+    "source-map-explorer": "^2.5.3",
+    "typescript": "^4.8.4",
+    "web-vitals": "^3.0.2"
+  },
+  "scripts": {
+    "dev": "react-scripts start",
+    "start": "react-scripts start",
+    "build-dev": "dotenv -e .env.development react-scripts build",
+    "build-pre": "dotenv -e .env.preview react-scripts build",
+    "build": "react-scripts build",
+    "lint": "eslint --ext .js,.ts,.jsx,.tsx src",
+    "lint-fix": "eslint --ext .js,.ts,.jsx,.tsx src --fix",
+    "analyze": "source-map-explorer 'dist/static/js/*.js'"
+  },
+  "eslintConfig": {
+    "extends": [
+      "prettier",
+      "eslint:recommended",
+      "react-app"
+    ],
+    "rules": {
+      "react-hooks/exhaustive-deps": 0
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

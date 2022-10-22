@@ -1,0 +1,42 @@
+.page-user-data {
+  padding: 10px 40px 20px;
+  height: 100%;
+  width: 1600px;
+  margin: 0 auto;
+  .btn-add-user-data-wrap {
+    margin-bottom: 10px;
+    width: 80px;
+  }
+  .user-card {
+    width: 256px;
+    margin-right: 20px;
+  }
+  .card-title {
+    font-size: 14px;
+    font-weight: normal;
+    .btn-update {
+      color: #409eff;
+      cursor: pointer;
+    }
+    .btn-delete {
+      color: #ef4135;
+      cursor: pointer;
+    }
+  }
+  .resources {
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  .resources-key {
+    width: 75px;
+  }
+
+  .resources-value {
+    font-family: monospace;
+    font-size: 18px;
+    &.date {
+      font-size: 14px;
+    }
+  }
+}

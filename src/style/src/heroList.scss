@@ -1,0 +1,48 @@
+.hero-list {
+  padding: 0 0 20px;
+  height: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  .rarity {
+    font-weight: 800;
+
+    &.SP {
+      color: #ee2c2c;
+    }
+
+    &.SSR {
+      color: #ffa500;
+    }
+
+    &.SR {
+      color: #9400d3;
+    }
+
+    &.R {
+      color: #1874cd;
+    }
+
+    &.N,
+    &.MATERIAL {
+      color: #9c9c9c;
+    }
+  }
+
+  .included {
+    color: #409eff;
+  }
+
+  .not-included {
+    color: #f56c6c;
+  }
+
+  .have-not {
+    color: #e6a23c;
+  }
+
+  .btnSetNotIncluded {
+    font-weight: 400;
+    font-size: 12px;
+    cursor: pointer;
+  }
+}
