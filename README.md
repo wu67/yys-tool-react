@@ -50,3 +50,14 @@ npm run dev
 ```bash
 npm run build
 ```
+
+## use docker
+
+```bash
+docker build -t yys_tool_react:dev .
+```
+
+```bash
+docker run -d -p 8888:8888 -v ${PWD}:/app --name yys_tool_react yys_tool_react:dev
+```
+
