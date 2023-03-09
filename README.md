@@ -53,11 +53,20 @@ npm run build
 
 ## use docker
 
-```bash
-docker build -t yys_tool_react:dev .
-```
+在项目根目录运行命令即可启动
 
 ```bash
-docker run -d -p 8888:8888 -v ${PWD}:/app --name yys_tool_react yys_tool_react:dev
+docker-compose up -d
 ```
 
+### 停止
+
+```bash
+docker-compose stop
+```
+
+### 删除所有未使用的卷
+
+```bash
+docker volume prune
+```

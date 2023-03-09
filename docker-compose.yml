@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  yys_tool_react:
+    restart: always
+    container_name: yys_tool_react
+    # custom image name here, just for build image yourself
+    image: "yys_tool_react:dev"
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "8888:8888"
+    environment:
+      - TZ=Asia/Shanghai
+      - MODE=dev
+    volumes:
+      - ./:/app

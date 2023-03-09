@@ -111,7 +111,7 @@ const App = (props: any) => {
           onClick={onMenuSelect}
           selectedKeys={[currentPage]}
           mode="horizontal"
-          theme="dark"
+          theme="light"
         ></Menu>
       </div>
 
