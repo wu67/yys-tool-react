@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/yys-tool-react/static/css/main.baaca0f8.css",
-    "main.js": "/yys-tool-react/static/js/main.95b9bd0a.js",
+    "main.css": "/yys-tool-react/static/css/main.7da24a7c.css",
+    "main.js": "/yys-tool-react/static/js/main.f3fb4ec0.js",
     "static/media/300007.png": "/yys-tool-react/static/media/300007.183a7ad55ea28c09d7ce.png",
     "static/media/300039.png": "/yys-tool-react/static/media/300039.9c912497a190bdb90451.png",
     "static/media/300032.png": "/yys-tool-react/static/media/300032.1d290128a386263c9c81.png",
@@ -34,11 +34,11 @@
     "static/media/300006.png": "/yys-tool-react/static/media/300006.9c6351579d18c3f29e50.png",
     "static/media/300003.png": "/yys-tool-react/static/media/300003.7aca82abcaa434da2cf3.png",
     "index.html": "/yys-tool-react/index.html",
-    "main.baaca0f8.css.map": "/yys-tool-react/static/css/main.baaca0f8.css.map",
-    "main.95b9bd0a.js.map": "/yys-tool-react/static/js/main.95b9bd0a.js.map"
+    "main.7da24a7c.css.map": "/yys-tool-react/static/css/main.7da24a7c.css.map",
+    "main.f3fb4ec0.js.map": "/yys-tool-react/static/js/main.f3fb4ec0.js.map"
   },
   "entrypoints": [
-    "static/css/main.baaca0f8.css",
-    "static/js/main.95b9bd0a.js"
+    "static/css/main.7da24a7c.css",
+    "static/js/main.f3fb4ec0.js"
   ]
 }
