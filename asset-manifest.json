@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/yys-tool-react/static/css/main.7da24a7c.css",
-    "main.js": "/yys-tool-react/static/js/main.f3fb4ec0.js",
+    "main.js": "/yys-tool-react/static/js/main.334659c4.js",
     "static/media/300007.png": "/yys-tool-react/static/media/300007.183a7ad55ea28c09d7ce.png",
     "static/media/300039.png": "/yys-tool-react/static/media/300039.9c912497a190bdb90451.png",
     "static/media/300032.png": "/yys-tool-react/static/media/300032.1d290128a386263c9c81.png",
@@ -35,10 +35,10 @@
     "static/media/300003.png": "/yys-tool-react/static/media/300003.7aca82abcaa434da2cf3.png",
     "index.html": "/yys-tool-react/index.html",
     "main.7da24a7c.css.map": "/yys-tool-react/static/css/main.7da24a7c.css.map",
-    "main.f3fb4ec0.js.map": "/yys-tool-react/static/js/main.f3fb4ec0.js.map"
+    "main.334659c4.js.map": "/yys-tool-react/static/js/main.334659c4.js.map"
   },
   "entrypoints": [
     "static/css/main.7da24a7c.css",
-    "static/js/main.f3fb4ec0.js"
+    "static/js/main.334659c4.js"
   ]
 }
