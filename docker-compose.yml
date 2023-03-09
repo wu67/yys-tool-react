@@ -15,3 +15,10 @@ services:
       - MODE=dev
     volumes:
       - ./:/app
+  yys_tool_nginx:
+    restart: always
+    image: "nginx:1.23.3"
+    ports:
+      - "8889:80"
+    volumes:
+      - ./dist/:/usr/share/nginx/html/yys-tool-react
