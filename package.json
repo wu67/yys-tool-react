@@ -34,7 +34,7 @@
     "start": "react-scripts start",
     "build-dev": "dotenv -e .env.development react-scripts build",
     "build-pre": "dotenv -e .env.preview react-scripts build",
-    "build": "react-scripts build",
+    "build": "dotenv -e .env.production react-scripts build",
     "lint": "eslint --ext .js,.ts,.jsx,.tsx src",
     "lint-fix": "eslint --ext .js,.ts,.jsx,.tsx src --fix",
     "analyze": "source-map-explorer 'dist/static/js/*.js'"
