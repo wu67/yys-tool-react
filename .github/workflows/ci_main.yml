@@ -31,11 +31,10 @@ jobs:
   Deploy:
     needs: Build
     permissions:
-      contents: read
       pages: write      # to deploy to Pages
       id-token: write 
     environment:
-      name: github-pages
+      name: gh-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
