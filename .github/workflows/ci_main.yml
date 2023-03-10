@@ -2,8 +2,18 @@ name: build yys-tool
 
 on:
   push:
-    branches: 
+    branches:
       - main
+
+# Allow one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+permissions:
+  contents: read
+  pages: write # to deploy to Pages
+  id-token: write
+
 jobs:
   Build:
     runs-on: ubuntu-latest
@@ -14,25 +24,22 @@ jobs:
       - name: actions/setup-node@v1
         uses: actions/setup-node@v1
         with:
-          node-version: '18.15.0'
+          node-version: "18.15.0"
 
       - name: npm_run_build
         run: |
           npm i && npm run build
 
       # 上传打包好的文件，所以下一步可以使用
-      - name: upload files 
+      - name: upload files
         uses: actions/upload-artifact@v2
-        with: 
+        with:
           name: build-dist
           path: dist
           retention-days: 1
 
   Deploy:
     needs: Build
-    permissions:
-      pages: write      # to deploy to Pages
-      id-token: write 
     environment:
       name: gh-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -42,12 +49,6 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: gh-pages
-      
-      - name: download build files
-        uses: actions/download-artifact@v2
-        with:
-          name: build-dist
-          path: ./
 
       - name: Deploy to GitHub Pages
         id: deployment
@@ -55,4 +56,3 @@ jobs:
         with:
           artifact_name: build-dist
           token: ${{ secrets.ACCESS_TOKEN }}
-   
