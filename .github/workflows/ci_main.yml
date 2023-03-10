@@ -49,4 +49,3 @@ jobs:
         uses: actions/deploy-pages@v1
         with:
           artifact_name: build-dist
-          token: ${{ secrets.ACCESS_TOKEN }}
