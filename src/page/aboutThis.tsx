@@ -1,3 +1,3 @@
 export default function AboutThis() {
-  return 'AboutThis test'
+  return 'AboutThis'
 }
