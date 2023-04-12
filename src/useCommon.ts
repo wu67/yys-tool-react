@@ -3,7 +3,7 @@ import { useState } from 'react'
 import $dayjs from 'dayjs'
 import { useSetRecoilState } from 'recoil'
 import $db from './db'
-import { userSelector, notIncludedListSelector } from 'src/store'
+import { userSelector, notIncludedListSelector } from '@/store'
 
 export default function useCommon() {
   const db = $db

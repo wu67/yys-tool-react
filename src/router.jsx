@@ -1,11 +1,11 @@
 import { createHashRouter } from 'react-router-dom'
-import App from 'src/App'
-import ErrorPage from 'src/page/error-page'
-import HeroList from 'src/page/heroList'
-import EquipList from 'src/page/equipList'
-import EquipAnalysis from 'src/page/equipAnalysis'
-import UserData from 'src/page/userData'
-import AboutThis from 'src/page/aboutThis'
+import App from '@/App'
+import ErrorPage from '@/page/error-page'
+import HeroList from '@/page/heroList'
+import EquipList from '@/page/equipList'
+import EquipAnalysis from '@/page/equipAnalysis'
+import UserData from '@/page/userData'
+import AboutThis from '@/page/aboutThis'
 
 const router = createHashRouter([
   {

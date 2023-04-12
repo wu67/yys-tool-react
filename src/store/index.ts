@@ -1,5 +1,5 @@
 import { atom, selector, DefaultValue } from 'recoil'
-import util from 'src/utils'
+import util from '@/utils'
 import {
   IBaseHero,
   IEquipTypePrototype,
@@ -7,7 +7,7 @@ import {
   IEquip,
   SubAttr,
   IEquipCustom,
-} from 'src/interface'
+} from '@/interface'
 
 // 装备数据
 export const equipData = atom({

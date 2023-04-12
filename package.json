@@ -15,50 +15,19 @@
     "recoil": "^0.7.7"
   },
   "devDependencies": {
-    "@types/node": "^18.14.6",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
-    "dotenv": "^16.0.3",
-    "dotenv-cli": "^7.0.0",
-    "eslint": "^8.35.0",
-    "eslint-config-prettier": "^8.7.0",
-    "http-proxy-middleware": "^2.0.6",
+    "@vitejs/plugin-react-swc": "^3.3.0",
     "prettier": "^2.8.4",
-    "react-scripts": "5.0.1",
     "sass": "^1.58.3",
-    "source-map-explorer": "^2.5.3",
-    "typescript": "^4.9.5"
+    "sass-loader": "^13.2.2",
+    "typescript": "^5.0.2",
+    "vite": "^4.2.1",
+    "vite-plugin-eslint": "^1.8.1",
+    "vue-tsc": "^1.2.0"
   },
   "scripts": {
-    "dev": "dotenv -e .env.development.local react-scripts start",
-    "start": "react-scripts start",
-    "build-dev": "dotenv -e .env.development react-scripts build",
-    "build-pre": "dotenv -e .env.preview react-scripts build",
-    "build": "dotenv -e .env.production react-scripts build",
-    "lint": "eslint --ext .js,.ts,.jsx,.tsx src",
-    "lint-fix": "eslint --ext .js,.ts,.jsx,.tsx src --fix",
-    "analyze": "source-map-explorer 'dist/static/js/*.js'"
-  },
-  "eslintConfig": {
-    "extends": [
-      "prettier",
-      "eslint:recommended",
-      "react-app"
-    ],
-    "rules": {
-      "react-hooks/exhaustive-deps": 0
-    }
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "dev": "vite",
+    "build": "tsc && vite build"
   }
 }

@@ -4,9 +4,9 @@ import type { CheckboxChangeEvent } from 'antd/es/checkbox'
 import type { CheckboxValueType } from 'antd/es/checkbox/Group'
 import { useRecoilValue } from 'recoil'
 import { useEffect, useState } from 'react'
-import useCommon from 'src/useCommon'
-import util from 'src/utils'
-import { IEquipAttrPrototype, IEquipCustom } from 'src/interface'
+import useCommon from '@/useCommon'
+import util from '@/utils'
+import { IEquipAttrPrototype, IEquipCustom } from '@/interface'
 import {
   attrMapSelector,
   effectiveAttrSelector,
@@ -14,8 +14,8 @@ import {
   userSelector,
   attrData,
   equipData,
-} from 'src/store'
-import 'src/style/src/equipList.scss'
+} from '@/store'
+import '@/style/src/equipList.scss'
 
 export default function EquipList() {
   const { formatTime } = useCommon()
@@ -100,7 +100,11 @@ export default function EquipList() {
     setCurrentPage(1)
   }
   // 这个change只用到了排序
-  const onTableChange = function (pagination: any, filters: any, sorter: any) {
+  const onTableChange = function (
+    _pagination: any,
+    _filters: any,
+    sorter: any,
+  ) {
     // 无视分页, 没用到这个封装, 数据全部手动分页, 正经业务谁会select * from table 不limit啊, 想炒老板吗
     onTableSortChange({ prop: sorter.columnKey, order: sorter.order })
   }
@@ -243,7 +247,7 @@ export default function EquipList() {
       key: 'pos',
       title: '',
       width: 50,
-      render: (value, row, index) => index + 1,
+      render: (_value, _row, index) => index + 1,
       fixed: 'left',
     },
     {
@@ -294,7 +298,7 @@ export default function EquipList() {
       width: 125,
       title: `${attr.name}`,
       sorter: true,
-      render: (value: number, row: any) => {
+      render: (_value: number, row: any) => {
         return (
           <div className="flex relative">
             {pageSize > 20 && (
@@ -440,7 +444,10 @@ export default function EquipList() {
           ></Checkbox.Group>
         </div>
 
-        <div className="flex" style={{ marginLeft: 60 }}>
+        <div
+          className="flex"
+          style={{ marginLeft: 60 }}
+        >
           <div>种类：</div>
           <Select
             defaultValue={checkEquipType}
@@ -458,7 +465,10 @@ export default function EquipList() {
             ]}
           ></Select>
         </div>
-        <div className="flex" style={{ marginLeft: 40 }}>
+        <div
+          className="flex"
+          style={{ marginLeft: 40 }}
+        >
           <div>副属性：</div>
           <Select
             value={randomAttrsLengthFilter}
@@ -490,7 +500,7 @@ export default function EquipList() {
           scroll={{ x: 1600 }}
           bordered
           onChange={onTableChange}
-          rowClassName={(record, index: number) =>
+          rowClassName={(_record, index: number) =>
             index % 2 === 1 ? 'table-row-zebra' : ''
           }
         ></Table>
@@ -504,7 +514,7 @@ export default function EquipList() {
           showTotal={(total: number) => `共 ${total} 项`}
           pageSizeOptions={[5, 10, 15, 20, 40, 100]}
           onChange={(page) => setCurrentPage(page)}
-          onShowSizeChange={(current, size) => setPageSize(size)}
+          onShowSizeChange={(_current, size) => setPageSize(size)}
         ></Pagination>
       </div>
     </div>

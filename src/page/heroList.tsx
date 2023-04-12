@@ -4,11 +4,11 @@ import { useRecoilState } from 'recoil'
 import { Table, Checkbox, message } from 'antd'
 import type { CheckboxChangeEvent } from 'antd/es/checkbox'
 import type { CheckboxValueType } from 'antd/es/checkbox/Group'
-import useCommon from 'src/useCommon'
-import { allHeroList, notIncludedListSelector, userData } from 'src/store'
-import { IBaseHero, IHero, hero_book_shards } from 'src/interface'
-import 'src/style/src/heroList.scss'
-import DialogSetNotIncluded from 'src/components/dialogSetNotIncluded'
+import useCommon from '@/useCommon'
+import { allHeroList, notIncludedListSelector, userData } from '@/store'
+import { IBaseHero, IHero, hero_book_shards } from '@/interface'
+import '@/style/src/heroList.scss'
+import DialogSetNotIncluded from '@/components/dialogSetNotIncluded'
 
 export default function HeroList() {
   const { getNotIncluded, updateUserNotIncluded } = useCommon()
@@ -209,7 +209,7 @@ export default function HeroList() {
       dataIndex: 'id',
       title: '',
       width: 50,
-      render: (value, row, index: number) => index + 1,
+      render: (_value, _row, index: number) => index + 1,
     },
     {
       dataIndex: 'id',
@@ -241,7 +241,7 @@ export default function HeroList() {
           dataIndex: `shards${userIndex}`,
           title: '持有碎片',
           width: 110,
-          render: (value: any[], row: any) => row.shards[userIndex],
+          render: (_value: any[], row: any) => row.shards[userIndex],
         },
         {
           dataIndex: `included${userIndex}`,
@@ -253,7 +253,7 @@ export default function HeroList() {
           ],
           onFilter: (value: string, row: any) =>
             filterIncluded(value, row, userIndex),
-          render: (value: any[], row: any) => {
+          render: (_value: any[], row: any) => {
             return (
               <div
                 className={
@@ -275,7 +275,7 @@ export default function HeroList() {
           ],
           onFilter: (value: string, row: any) =>
             filterHave(value, row, userIndex),
-          render: (value: any[], row: any) => {
+          render: (_value: any[], row: any) => {
             return (
               <div className={row.have[userIndex] === '0' ? 'have-not' : ''}>
                 {row.have[userIndex] === '1' ? '' : '仓库中无'}
@@ -287,7 +287,7 @@ export default function HeroList() {
       const uColumn = {
         dataIndex: `userName${userIndex}`,
         children: result,
-        title: (value: any, row: any) => {
+        title: (_value: any, _row: any) => {
           return (
             <div className="flex center">
               <div>{user.data.player.name}&nbsp;</div>
@@ -363,7 +363,7 @@ export default function HeroList() {
         columns={tableColumn}
         dataSource={shardsListView}
         pagination={false}
-        rowClassName={(record, index: number) =>
+        rowClassName={(_record, index: number) =>
           index % 2 === 1 ? 'table-row-zebra' : ''
         }
         size="small"

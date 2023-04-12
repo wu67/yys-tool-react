@@ -6,8 +6,8 @@ import { RouterProvider } from 'react-router-dom'
 import { RecoilRoot } from 'recoil'
 import router from './router'
 
-import 'src/style/index.scss'
-import 'src/style/flex-custom.scss'
+import '@/style/index.scss'
+import '@/style/flex-custom.scss'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 

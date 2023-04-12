@@ -1,8 +1,8 @@
-import useCommon from 'src/useCommon'
+import useCommon from '@/useCommon'
 import { useRecoilValue } from 'recoil'
-import { userData } from 'src/store'
+import { userData } from '@/store'
 import { Card, Modal, message } from 'antd'
-import 'src/style/src/userData.scss'
+import '@/style/src/userData.scss'
 
 export default function UserData() {
   const {

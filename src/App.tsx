@@ -4,12 +4,12 @@ import { Menu, Spin } from 'antd'
 import { useSetRecoilState } from 'recoil'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 
-import allHeroJSON from 'src/assets/all_hero.json'
-import damoJSON from 'src/assets/damo.json'
-import equipJSON from 'src/assets/equip.json'
-import { IBaseHero, IEquipTypePrototype } from 'src/interface'
-import { allHeroList, equipData } from 'src/store'
-import useCommon from 'src/useCommon'
+import allHeroJSON from '@/assets/all_hero.json'
+import damoJSON from '@/assets/damo.json'
+import equipJSON from '@/assets/equip.json'
+import { IBaseHero, IEquipTypePrototype } from '@/interface'
+import { allHeroList, equipData } from '@/store'
+import useCommon from '@/useCommon'
 import './app.scss'
 
 const App = (props: any) => {

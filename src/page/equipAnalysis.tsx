@@ -1,11 +1,11 @@
-// import useCommon from 'src/useCommon'
+// import useCommon from '@/useCommon'
 import { useState, useEffect } from 'react'
 import { Tabs, Card, Spin, Tooltip } from 'antd'
 import { useRecoilState, useRecoilValue } from 'recoil'
-import { attrMapSelector, equipData, userSelector } from 'src/store'
-import { IEquipCustom, SubAttr, IEquipTypePrototype } from 'src/interface'
-import util from 'src/utils'
-import 'src/style/src/equipAnalysis.scss'
+import { attrMapSelector, equipData, userSelector } from '@/store'
+import { IEquipCustom, SubAttr, IEquipTypePrototype } from '@/interface'
+import util from '@/utils'
+import '@/style/src/equipAnalysis.scss'
 import classnames from 'classnames'
 
 export default function EquipAnalysis() {
@@ -16,9 +16,8 @@ export default function EquipAnalysis() {
   let [loading, setLoading] = useState(false)
 
   const getImageURL = function (suitCode: number) {
-    // vite 用
-    // return new URL(`/src/assets/suit_icon/${suitCode}.png`, import.meta.url).href
-    return require(`/src/assets/suit_icon/${suitCode}.png`)
+    return new URL(`/src/assets/suit_icon/${suitCode}.png`, import.meta.url)
+      .href
   }
 
   const [equipList] = useRecoilState(equipData)

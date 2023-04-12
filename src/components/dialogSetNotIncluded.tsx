@@ -1,8 +1,8 @@
 import { Modal, Transfer } from 'antd'
 import { useEffect, useState } from 'react'
 import type { TransferDirection } from 'antd/es/transfer'
-import { IBaseHero } from 'src/interface'
-import 'src/style/src/dialogSetNotIncluded.scss'
+import { IBaseHero } from '@/interface'
+import '@/style/src/dialogSetNotIncluded.scss'
 
 interface IProps {
   name: string

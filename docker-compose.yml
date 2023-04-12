@@ -4,7 +4,7 @@ services:
     # restart: always
     container_name: yys_tool_react
     image: "node:18.15.0-slim"
-    command: bash -c "npm --registry=https://registry.npmmirror.com install && npm run dev"
+    command: bash -c "npm --registry=https://registry.npmmirror.com install && npm run build"
     working_dir: /var/local
     volumes:
       - ./:/var/local
@@ -12,7 +12,6 @@ services:
       - "8888:8888"
     environment:
       - TZ=Asia/Shanghai
-      - MODE=dev
   # yys_tool_nginx:
   #   restart: always
   #   image: "nginx:1.23.3"
