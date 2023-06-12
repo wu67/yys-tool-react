@@ -267,7 +267,7 @@ export default function UserData() {
       <div>
         <div className="btn-add-user-data-wrap">
           <label htmlFor="userDataInput-1">
-            <span className="ant-btn ant-btn-primary">新增</span>
+            <span className="btn-add">新增</span>
           </label>
         </div>
         <input
