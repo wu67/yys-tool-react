@@ -13,7 +13,7 @@ export default function EquipAnalysis() {
     return util.transNumberToChinese(value)
   }
 
-  let [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const getImageURL = function (suitCode: number) {
     return new URL(`/src/assets/suit_icon/${suitCode}.png`, import.meta.url)
@@ -27,7 +27,7 @@ export default function EquipAnalysis() {
   const importantSuit = [
     300002, 300010, 300012, 300019, 300021, 300023, 300034, 300079, 300080,
   ]
-  let [currentUser, setCurrentUser] = useState('0')
+  const [currentUser, setCurrentUser] = useState('0')
 
   interface suitData {
     name: string
@@ -42,16 +42,16 @@ export default function EquipAnalysis() {
     }
     value: number
   }
-  let [aData, setAData] = useState<suitData[]>([])
+  const [aData, setAData] = useState<suitData[]>([])
   // 散件速度计算
-  let [scatteredSuit, setScatteredSuit] = useState<number[]>([])
+  const [scatteredSuit, setScatteredSuit] = useState<number[]>([])
   // 16满速个数统计
-  let [fullCount, setFullCount] = useState(0)
-  let [fullCount15, setFullCount15] = useState(0)
-  let [fullCount17, setFullCount17] = useState(0)
-  let [doubleSpeedPrototypeCount, setDoubleSpeedPrototypeCount] = useState(0)
+  const [fullCount, setFullCount] = useState(0)
+  const [fullCount15, setFullCount15] = useState(0)
+  const [fullCount17, setFullCount17] = useState(0)
+  const [doubleSpeedPrototypeCount, setDoubleSpeedPrototypeCount] = useState(0)
   // 速度胚子个数
-  let [speedPrototypeCount, setSpeedPrototypeCount] = useState(0)
+  const [speedPrototypeCount, setSpeedPrototypeCount] = useState(0)
   const initData = function (attrName = 'Speed') {
     let fullCount = 0
     let fullCount15 = 0
@@ -60,12 +60,12 @@ export default function EquipAnalysis() {
     setDoubleSpeedPrototypeCount(0)
     setLoading(true)
     // 散件
-    let scatteredSuitData: suitData = {
+    const scatteredSuitData: suitData = {
       name: '散件',
       id: -111,
       position: [[], [], [], [], [], []],
     }
-    let temp = equipList.map((equip: IEquipTypePrototype) => {
+    const temp = equipList.map((equip: IEquipTypePrototype) => {
       const finalEquipData: suitData = {
         ...equip,
         // 6个位置，按属性排序
@@ -75,7 +75,7 @@ export default function EquipAnalysis() {
       userList[parseInt(currentUser)].data.hero_equips.forEach(
         (item: IEquipCustom & SubAttr) => {
           if (item.suit_id === equip.id) {
-            let sum = util.getAttrSum(item, attrName)
+            const sum = util.getAttrSum(item, attrName)
 
             if (
               (sum > 15 && item.pos !== 1) ||
@@ -99,10 +99,10 @@ export default function EquipAnalysis() {
               item.randomAttrsLength === 4
             ) {
               if (item.pos !== 1) {
-                speedPrototypeCount += 1
+                setSpeedPrototypeCount(speedPrototypeCount + 1)
               }
               if (item.mainAttr.type === 'Speed') {
-                doubleSpeedPrototypeCount += 1
+                setDoubleSpeedPrototypeCount(doubleSpeedPrototypeCount + 1)
               }
             }
 
@@ -123,11 +123,11 @@ export default function EquipAnalysis() {
       setFullCount15(fullCount15)
       setFullCount17(fullCount17)
 
-      for (let item of finalEquipData.position) {
+      for (const item of finalEquipData.position) {
         item.sort((a, b) => b.value - a.value)
       }
 
-      for (let item of scatteredSuitData.position) {
+      for (const item of scatteredSuitData.position) {
         item.sort((a, b) => b.value - a.value)
       }
       return finalEquipData
@@ -214,7 +214,10 @@ export default function EquipAnalysis() {
               >
                 {equip.position.map((p, pIndex) => {
                   return (
-                    <div className="position" key={pIndex}>
+                    <div
+                      className="position"
+                      key={pIndex}
+                    >
                       <div className="flex analysis-item">
                         <div>位置{transNumberToChinese(pIndex + 1)}&nbsp;</div>
                         {p.length > 0 && (

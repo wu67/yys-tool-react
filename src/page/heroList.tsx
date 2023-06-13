@@ -57,11 +57,11 @@ export default function HeroList() {
       key: React.Key
     }
 
-    let result = heroList
+    const result = heroList
       .slice()
       .sort((a: IBaseHero, b: IBaseHero) => b.id - a.id)
       .map((item: IBaseHero) => {
-        let obj: IBaseHeroTableItem = {
+        const obj: IBaseHeroTableItem = {
           name: item.name,
           rarity: item.rarity,
           id: item.id,
@@ -125,9 +125,9 @@ export default function HeroList() {
     return result
   }
 
-  let [checkList, setCheckList] = useState<CheckboxValueType[]>(['SP', 'SSR'])
+  const [checkList, setCheckList] = useState<CheckboxValueType[]>(['SP', 'SSR'])
 
-  let [shardsListView, setShardsListView] = useState([] as any[])
+  const [shardsListView, setShardsListView] = useState([] as any[])
   useEffect(() => {
     // const computedShardsList = computed(() => {
     let result = []
@@ -147,20 +147,20 @@ export default function HeroList() {
     setShardsListView(result)
     // })
   }, [checkList, shards])
-  let [isIndeterminate, setIsIndeterminate] = useState(true)
+  const [isIndeterminate, setIsIndeterminate] = useState(true)
   const handleCheckAllChange = function (e: CheckboxChangeEvent) {
     setCheckAll(e.target.checked)
     setCheckList(e.target.checked ? rarityList.map((item) => item.value) : [])
     setIsIndeterminate(false)
   }
 
-  let [checkAll, setCheckAll] = useState(false)
+  const [checkAll, setCheckAll] = useState(false)
   const handleCheckedRarityChange = function (value: CheckboxValueType[]) {
     setCheckList(value)
     setIsIndeterminate(value.length > 0 && value.length < rarityList.length)
   }
 
-  // let [shardTableRef, setShardTableRef] = useState()
+  // const [shardTableRef, setShardTableRef] = useState()
   // const clearFilter = function () {
   // shardTableRef.clearFilter()
   // }
@@ -172,9 +172,9 @@ export default function HeroList() {
     return value === row.have[index]
   }
 
-  let [currentEditNotIncludedUserIndex, setCurrentEditNotIncludedUserIndex] =
+  const [currentEditNotIncludedUserIndex, setCurrentEditNotIncludedUserIndex] =
     useState(0)
-  let [dialogSetNotIncludedVisible, setDialogSetNotIncludedVisible] =
+  const [dialogSetNotIncludedVisible, setDialogSetNotIncludedVisible] =
     useState(false)
 
   const setNotIncluded = function (userIndex: number) {
@@ -287,7 +287,7 @@ export default function HeroList() {
       const uColumn = {
         dataIndex: `userName${userIndex}`,
         children: result,
-        title: (_value: any, _row: any) => {
+        title: () => {
           return (
             <div className="flex center">
               <div>{user.data.player.name}&nbsp;</div>
@@ -337,7 +337,10 @@ export default function HeroList() {
           setModalParentVisible={setDialogSetNotIncludedVisible}
         ></DialogSetNotIncluded>
       )}
-      <div className="" style={{ marginBottom: 8 }}>
+      <div
+        className=""
+        style={{ marginBottom: 8 }}
+      >
         <div className="flex">
           <div>主属性：</div>
           <Checkbox

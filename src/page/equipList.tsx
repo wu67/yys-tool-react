@@ -47,7 +47,7 @@ export default function EquipList() {
     setCurrentPage(1)
   }
 
-  let [checkAttrList, setCheckAttrList] = useState<CheckboxValueType[]>(
+  const [checkAttrList, setCheckAttrList] = useState<CheckboxValueType[]>(
     attrList.map((item: IEquipAttrPrototype) => item.key),
   )
   // 单个属性被勾选change

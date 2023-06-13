@@ -12,7 +12,7 @@ import { allHeroList, equipData } from '@/store'
 import useCommon from '@/useCommon'
 import './app.scss'
 
-const App = (props: any) => {
+const App = () => {
   const updateHeroList = useSetRecoilState(allHeroList)
   const updateEquipData = useSetRecoilState(equipData)
   // 获取固定数据
@@ -48,7 +48,7 @@ const App = (props: any) => {
 
   const { getUserData } = useCommon()
 
-  let [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true)
   useEffect(() => {
     getUserData().then(() => {
       setTimeout(() => {
@@ -115,7 +115,11 @@ const App = (props: any) => {
         ></Menu>
       </div>
 
-      <Spin spinning={loading} size="large" tip="正在加载数据">
+      <Spin
+        spinning={loading}
+        size="large"
+        tip="正在加载数据"
+      >
         <div className="contain">{!loading && <Outlet></Outlet>}</div>
       </Spin>
     </div>

@@ -62,7 +62,6 @@ export default function UserData() {
           getUserData()
         })
       },
-      onCancel() {},
     })
   }
   const calcDrawCount = (jade: number, amulet: number) => {
