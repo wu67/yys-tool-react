@@ -341,7 +341,7 @@ export default function HeroList() {
         className=""
         style={{ marginBottom: 8 }}
       >
-        <div className="flex">
+        <div className="flex items-center">
           <div>主属性：</div>
           <Checkbox
             indeterminate={isIndeterminate}

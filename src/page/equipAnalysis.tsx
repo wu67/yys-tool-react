@@ -200,7 +200,7 @@ export default function EquipAnalysis() {
                 }`}
                 key={equipIndex}
                 title={
-                  <div className="flex">
+                  <div className="flex items-center">
                     {equip.id > 0 && (
                       <img
                         src={getImageURL(equip.id)}

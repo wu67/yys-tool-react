@@ -113,11 +113,11 @@ export default function UserData() {
         className="user-card"
         key={userItem.data.player.id | index}
         title={
-          <div className="flex place-content-between card-title">
+          <div className="card-title flex place-content-between">
             <span>
               lv.{userItem.data.player.level}&nbsp;{userItem.data.player.name}
             </span>
-            <div className="flex">
+            <div className="flex items-center">
               <label htmlFor={`updateInput${index}`}>
                 <span className="btn-update">更新</span>
               </label>
@@ -140,23 +140,23 @@ export default function UserData() {
         }
       >
         <div className="resources">
-          <div className="flex">
+          <div className="flex items-center">
             <div className="resources-key">勾玉</div>
             <div className="resources-value">{userItem.data.currency.jade}</div>
           </div>
-          <div className="flex">
+          <div className="flex items-center">
             <div className="resources-key">蓝票</div>
             <div className="resources-value">
               {userItem.data.currency.mystery_amulet}
             </div>
           </div>
-          <div className="flex">
+          <div className="flex items-center">
             <div className="resources-key">紫票</div>
             <div className="resources-value">
               {userItem.data.currency.ar_amulet}
             </div>
           </div>
-          <div className="flex">
+          <div className="flex items-center">
             <div>
               预计有&nbsp;
               {calcDrawCount(
@@ -168,77 +168,77 @@ export default function UserData() {
             </div>
           </div>
           <br />
-          <div className="flex">
+          <div className="flex items-center">
             <div className="resources-key">魂玉</div>
             <div className="resources-value">
               {userItem.data.currency.s_jade}
             </div>
           </div>
-          <div className="flex">
+          <div className="flex items-center">
             <div className="resources-key">金蛇皮</div>
             <div className="resources-value">
               {userItem.data.currency.reverse_scale}
             </div>
           </div>
-          <div className="flex">
+          <div className="flex items-center">
             <div className="resources-key">金币</div>
             <div className="resources-value">{userItem.data.currency.coin}</div>
           </div>
-          <div className="flex">
+          <div className="flex items-center">
             <div className="resources-key">体力</div>
             <div className="resources-value">
               {userItem.data.currency.action_point}
             </div>
           </div>
-          <div className="flex">
+          <div className="flex items-center">
             <div className="resources-key">樱饼</div>
             <div className="resources-value">
               {userItem.data.currency.auto_point}
             </div>
           </div>
-          <div className="flex">
+          <div className="flex items-center">
             <div className="resources-key">荣誉</div>
             <div className="resources-value">
               {userItem.data.currency.honor}
             </div>
           </div>
-          <div className="flex">
+          <div className="flex items-center">
             <div className="resources-key">皮肤券</div>
             <div className="resources-value">
               {userItem.data.currency.skin_token}
             </div>
           </div>
-          <div className="flex">
+          <div className="flex items-center">
             <div className="resources-key">SP皮肤券</div>
             <div className="resources-value">
               {userItem.data.currency.sp_skin_token}
             </div>
           </div>
-          <div className="flex">
+          <div className="flex items-center">
             <div className="resources-key">痴卷</div>
             <div className="resources-value">
               {userItem.data.currency.foolery_pass}
             </div>
           </div>
-          <div className="flex">
+          <div className="flex items-center">
             <div className="resources-key">御灵门票</div>
             <div className="resources-value">
               {userItem.data.currency.totem_pass}
             </div>
           </div>
-          <div className="flex">
+          <div className="flex items-center">
             <div className="resources-key">御札</div>
             <div className="resources-value">
               {userItem.data.currency.ofuda}
             </div>
           </div>
-          <div className="flex">
+          <div className="flex items-center">
             <div className="resources-key">金御札</div>
             <div className="resources-value">
               {userItem.data.currency.gold_ofuda}
             </div>
           </div>
-          <div className="flex">
+          <div className="flex items-center">
             <div className="resources-key">紫蛇皮</div>
             <div className="resources-value">
               {userItem.data.currency.scale}
@@ -252,7 +252,7 @@ export default function UserData() {
               {formatTime(new Date(userItem.timestamp), 'YYYY-MM-DD HH:mm')}
             </div>
           </div>
-          <div className="flex">
+          <div className="flex items-center">
             <div className="resources-key">用户ID</div>
             <div className="resources-value">{userItem.data.player.id}</div>
           </div>

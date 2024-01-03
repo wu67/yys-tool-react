@@ -280,7 +280,7 @@ export default function EquipList() {
       width: 140,
       title: '主属性',
       render: (mainAttr: any, row: any) => (
-        <div className="flex attr-name">
+        <div className="attr-name flex">
           <div className="main">{transAttrToName(mainAttr.type)}</div>
           {row.single_attrs.length > 0 && (
             <div className="fixed-name">
@@ -301,7 +301,7 @@ export default function EquipList() {
       sorter: true,
       render: (_value: number, row: any) => {
         return (
-          <div className="flex relative">
+          <div className="relative flex">
             {pageSize > 20 && (
               <div className="attr-nick absolute">{attr.nick}</div>
             )}
@@ -383,7 +383,7 @@ export default function EquipList() {
         ></Tabs>
       </div>
 
-      <div className="flex attr-filter-wrap">
+      <div className="attr-filter-wrap flex">
         <div>主属性：</div>
         <Checkbox
           indeterminate={isIndeterminateAllAttr}
@@ -403,7 +403,7 @@ export default function EquipList() {
           })}
         ></Checkbox.Group>
       </div>
-      <div className="flex attr-filter-wrap">
+      <div className="attr-filter-wrap flex">
         <div>等级：</div>
         <Checkbox
           checked={checkAllLevel}
@@ -424,7 +424,7 @@ export default function EquipList() {
         ></Checkbox.Group>
       </div>
       <div className="attr-filter-wrap flex">
-        <div className="flex">
+        <div className="flex items-center">
           <div>位置：</div>
           <Checkbox
             indeterminate={isIndeterminateAllPosition}
@@ -446,7 +446,7 @@ export default function EquipList() {
         </div>
 
         <div
-          className="flex"
+          className="flex items-center"
           style={{ marginLeft: 60 }}
         >
           <div>种类：</div>
@@ -467,7 +467,7 @@ export default function EquipList() {
           ></Select>
         </div>
         <div
-          className="flex"
+          className="flex items-center"
           style={{ marginLeft: 40 }}
         >
           <div>副属性：</div>
@@ -506,7 +506,7 @@ export default function EquipList() {
           }
         ></Table>
       </div>
-      <div className="flex justify-center pagination-wrap">
+      <div className="pagination-wrap flex justify-center">
         <Pagination
           current={currentPage}
           defaultCurrent={currentPage}
