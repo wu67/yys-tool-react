@@ -173,7 +173,7 @@ export default function EquipAnalysis() {
         }}
       ></Tabs>
 
-      <div className="flex center extendCountArea">
+      <div className="extendCountArea flex justify-center">
         {scatteredSuit.map((suit: number, suitIndex: number) => {
           return (
             <div key={suitIndex}>
@@ -191,7 +191,7 @@ export default function EquipAnalysis() {
       </div>
 
       <Spin spinning={loading}>
-        <div className="flex wrap">
+        <div className="flex flex-wrap">
           {aData.map((equip: suitData, equipIndex: number) => {
             return (
               <Card
@@ -218,7 +218,7 @@ export default function EquipAnalysis() {
                       className="position"
                       key={pIndex}
                     >
-                      <div className="flex analysis-item">
+                      <div className="analysis-item flex">
                         <div>位置{transNumberToChinese(pIndex + 1)}&nbsp;</div>
                         {p.length > 0 && (
                           <div
@@ -248,8 +248,8 @@ export default function EquipAnalysis() {
                               {pIndex === 1 && p[0].value > 59
                                 ? (p[0].value - 57).toFixed(2)
                                 : pIndex !== 1 && p[0].value > 0
-                                ? p[0].value.toFixed(2)
-                                : ''}
+                                  ? p[0].value.toFixed(2)
+                                  : ''}
                             </Tooltip>
                           </div>
                         )}

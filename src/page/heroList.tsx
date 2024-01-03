@@ -289,7 +289,7 @@ export default function HeroList() {
         children: result,
         title: () => {
           return (
-            <div className="flex center">
+            <div className="flex justify-center">
               <div>{user.data.player.name}&nbsp;</div>
               <div
                 className="btnSetNotIncluded"

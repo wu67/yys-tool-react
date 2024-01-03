@@ -424,7 +424,7 @@ export default function EquipList() {
         ></Checkbox.Group>
       </div>
       <div className="attr-filter-wrap flex">
-        <div className="flex ">
+        <div className="flex">
           <div>位置：</div>
           <Checkbox
             indeterminate={isIndeterminateAllPosition}
@@ -506,7 +506,7 @@ export default function EquipList() {
           }
         ></Table>
       </div>
-      <div className="flex center pagination-wrap">
+      <div className="flex justify-center pagination-wrap">
         <Pagination
           current={currentPage}
           defaultCurrent={currentPage}

@@ -7,7 +7,6 @@ import { RecoilRoot } from 'recoil'
 import router from './router'
 
 import '@/style/index.scss'
-import '@/style/flex-custom.scss'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 

@@ -113,7 +113,7 @@ export default function UserData() {
         className="user-card"
         key={userItem.data.player.id | index}
         title={
-          <div className="flex between card-title">
+          <div className="flex place-content-between card-title">
             <span>
               lv.{userItem.data.player.level}&nbsp;{userItem.data.player.name}
             </span>
@@ -246,7 +246,7 @@ export default function UserData() {
           </div>
 
           <br />
-          <div className="flex start">
+          <div className="flex items-start">
             <div className="resources-key">导出时间</div>
             <div className="resources-value date">
               {formatTime(new Date(userItem.timestamp), 'YYYY-MM-DD HH:mm')}
@@ -278,7 +278,7 @@ export default function UserData() {
         />
       </div>
 
-      <div className="flex wrap">{cardHTML}</div>
+      <div className="flex flex-wrap">{cardHTML}</div>
     </div>
   )
 }
