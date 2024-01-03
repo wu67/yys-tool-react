@@ -202,6 +202,7 @@ export default function EquipList() {
 
   const userList = useRecoilValue(userSelector)
   const initData = () => {
+    if (!userList[parseInt(currentUser)]) return
     const data = userList[parseInt(currentUser)].data
 
     const tempList = data.hero_equips
