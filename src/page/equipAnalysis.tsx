@@ -5,7 +5,6 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 import { attrMapSelector, equipData, userSelector } from '@/store'
 import { IEquipCustom, SubAttr, IEquipTypePrototype } from '@/interface'
 import util from '@/utils'
-import '@/style/src/equipAnalysis.scss'
 import classnames from 'classnames'
 
 export default function EquipAnalysis() {
@@ -158,9 +157,37 @@ export default function EquipAnalysis() {
     }
   }, [userList, currentUser])
 
+  const getColorClass = function (index: number, number: number) {
+    if (
+      (index !== 1 && number >= 17.5) ||
+      (index === 1 && number >= 57 + 17.5)
+    ) {
+      return 'text-white font-medium bg-violet-700'
+    } else if (
+      (index !== 1 && number >= 17) ||
+      (index === 1 && number >= 57 + 17)
+    ) {
+      return 'text-white font-medium bg-red-600'
+    } else if (
+      (index !== 1 && number > 16.5) ||
+      (index === 1 && number > 57 + 16.5)
+    ) {
+      return 'text-white font-medium bg-orange-400'
+    } else if (
+      (index !== 1 && number > 15) ||
+      (index === 1 && number > 57 + 15)
+    ) {
+      return 'text-white font-medium bg-teal-700'
+    } else if (
+      (index !== 1 && number > 13.5) ||
+      (index === 1 && number > 57 + 13.5)
+    ) {
+      return 'bg-teal-100'
+    }
+  }
+
   return (
-    <div className="page-equip-analysis">
-      <div className="content-top"></div>
+    <div className="mx-auto my-0 w-[1600px] pb-5 pl-4">
       <Tabs
         items={userList.map((user: any, userIndex: number) => {
           return {
@@ -173,21 +200,34 @@ export default function EquipAnalysis() {
         }}
       ></Tabs>
 
-      <div className="extendCountArea flex justify-center">
+      <div className="mb-1 flex justify-center space-x-2">
         {scatteredSuit.map((suit: number, suitIndex: number) => {
           return (
-            <div key={suitIndex}>
+            <div
+              key={suitIndex}
+              className="rounded-sm border border-solid border-gray-c px-1"
+            >
               散件{transNumberToChinese(suitIndex + 1)}速:
               {suit.toFixed(3)}
             </div>
           )
         })}
 
-        <div>满速17+: {fullCount17}个</div>
-        <div>满速16+: {fullCount}个</div>
-        <div>满速15+: {fullCount15}个</div>
-        <div>双速胚子：{doubleSpeedPrototypeCount}个</div>
-        <div>速度胚子：{speedPrototypeCount}个</div>
+        <div className="rounded-sm border border-solid border-gray-c px-1">
+          满速17+: {fullCount17}个
+        </div>
+        <div className="rounded-sm border border-solid border-gray-c px-1">
+          满速16+: {fullCount}个
+        </div>
+        <div className="rounded-sm border border-solid border-gray-c px-1">
+          满速15+: {fullCount15}个
+        </div>
+        <div className="rounded-sm border border-solid border-gray-c px-1">
+          双速胚子：{doubleSpeedPrototypeCount}个
+        </div>
+        <div className="rounded-sm border border-solid border-gray-c px-1">
+          速度胚子：{speedPrototypeCount}个
+        </div>
       </div>
 
       <Spin spinning={loading}>
@@ -195,8 +235,12 @@ export default function EquipAnalysis() {
           {aData.map((equip: suitData, equipIndex: number) => {
             return (
               <Card
-                className={`equip-item ${
-                  importantSuit.indexOf(equip.id) !== -1 ? 'important' : ''
+                headStyle={{ padding: '0 0 0 7px' }}
+                bodyStyle={{ padding: '20px 0 10px 7px' }}
+                className={`mb-2.5 mr-2 min-h-[140px] w-[149px] ${
+                  importantSuit.indexOf(equip.id) !== -1
+                    ? 'border-orange-200 bg-orange-100'
+                    : ''
                 }`}
                 key={equipIndex}
                 title={
@@ -205,7 +249,7 @@ export default function EquipAnalysis() {
                       <img
                         src={getImageURL(equip.id)}
                         alt="equip-icon"
-                        className="background"
+                        className="mr-1.5 h-8 w-8 rounded-full border-2 border-solid border-gray-c"
                       />
                     )}
                     <div>{equip.name}</div>
@@ -215,31 +259,17 @@ export default function EquipAnalysis() {
                 {equip.position.map((p, pIndex) => {
                   return (
                     <div
-                      className="position"
+                      className="mb-1"
                       key={pIndex}
                     >
-                      <div className="analysis-item flex">
+                      <div className="flex space-x-0.5">
                         <div>位置{transNumberToChinese(pIndex + 1)}&nbsp;</div>
                         {p.length > 0 && (
                           <div
-                            className={classnames({
-                              'analysis-value': true,
-                              neck:
-                                (pIndex !== 1 && p[0].value > 13.5) ||
-                                (pIndex === 1 && p[0].value > 57 + 13.5),
-                              full:
-                                (pIndex !== 1 && p[0].value > 15) ||
-                                (pIndex === 1 && p[0].value > 57 + 15),
-                              rare:
-                                (pIndex !== 1 && p[0].value > 16.5) ||
-                                (pIndex === 1 && p[0].value > 57 + 16.5),
-                              extreme:
-                                (pIndex !== 1 && p[0].value >= 17) ||
-                                (pIndex === 1 && p[0].value >= 57 + 17),
-                              european:
-                                (pIndex !== 1 && p[0].value >= 17.5) ||
-                                (pIndex === 1 && p[0].value >= 57 + 17.5),
-                            })}
+                            className={classnames(
+                              'flex min-w-11 justify-center rounded px-1',
+                              getColorClass(pIndex, p[0].value),
+                            )}
                           >
                             <Tooltip
                               placement="top"
@@ -268,24 +298,10 @@ export default function EquipAnalysis() {
                               }
                             >
                               <div
-                                className={classnames({
-                                  'analysis-value': true,
-                                  neck:
-                                    (pIndex !== 1 && p[1].value > 13.5) ||
-                                    (pIndex === 1 && p[1].value > 57 + 13.5),
-                                  full:
-                                    (pIndex !== 1 && p[1].value > 15) ||
-                                    (pIndex === 1 && p[1].value > 57 + 15),
-                                  rare:
-                                    (pIndex !== 1 && p[1].value > 16.5) ||
-                                    (pIndex === 1 && p[1].value > 57 + 16.5),
-                                  extreme:
-                                    (pIndex !== 1 && p[1].value >= 17) ||
-                                    (pIndex === 1 && p[1].value >= 57 + 17),
-                                  european:
-                                    (pIndex !== 1 && p[1].value >= 17.5) ||
-                                    (pIndex === 1 && p[1].value >= 57 + 17.5),
-                                })}
+                                className={classnames(
+                                  'rounded px-1',
+                                  getColorClass(pIndex, p[1].value),
+                                )}
                               >
                                 &nbsp;&nbsp;
                               </div>
@@ -306,24 +322,10 @@ export default function EquipAnalysis() {
                               }
                             >
                               <div
-                                className={classnames({
-                                  'analysis-value': true,
-                                  neck:
-                                    (pIndex !== 1 && p[2].value > 13.5) ||
-                                    (pIndex === 1 && p[2].value > 57 + 13.5),
-                                  full:
-                                    (pIndex !== 1 && p[2].value > 15) ||
-                                    (pIndex === 1 && p[2].value > 57 + 15),
-                                  rare:
-                                    (pIndex !== 1 && p[2].value > 16.5) ||
-                                    (pIndex === 1 && p[2].value > 57 + 16.5),
-                                  extreme:
-                                    (pIndex !== 1 && p[2].value >= 17) ||
-                                    (pIndex === 1 && p[2].value >= 57 + 17),
-                                  european:
-                                    (pIndex !== 1 && p[2].value >= 17.5) ||
-                                    (pIndex === 1 && p[2].value >= 57 + 17.5),
-                                })}
+                                className={classnames(
+                                  'rounded px-1',
+                                  getColorClass(pIndex, p[2].value),
+                                )}
                               >
                                 &nbsp;&nbsp;
                               </div>

@@ -11,7 +11,13 @@ import '@/style/index.scss'
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
 root.render(
-  <ConfigProvider locale={locale}>
+  <ConfigProvider locale={locale} theme={{
+    components: {
+      Card: {
+        headerHeight: 44
+      }
+    }
+  }}>
     <RecoilRoot>
       <RouterProvider router={router}></RouterProvider>
     </RecoilRoot>
