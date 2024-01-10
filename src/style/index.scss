@@ -3,6 +3,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .flex {
+    // 侧轴方向 行与行的开头对齐 行内item的中间对齐
+    @apply content-start items-center;
+  }
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -23,22 +30,6 @@ code {
   width: 100%;
   min-width: 1600px;
   position: relative;
-}
-
-.absolute {
-  position: absolute;
-}
-
-.fixed {
-  position: fixed;
-}
-
-.relative {
-  position: relative;
-}
-
-.display-none {
-  display: none;
 }
 
 .table-row-zebra {

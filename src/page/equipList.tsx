@@ -424,7 +424,7 @@ export default function EquipList() {
         ></Checkbox.Group>
       </div>
       <div className="attr-filter-wrap flex">
-        <div className="flex items-center">
+        <div className="flex">
           <div>位置：</div>
           <Checkbox
             indeterminate={isIndeterminateAllPosition}
@@ -446,7 +446,7 @@ export default function EquipList() {
         </div>
 
         <div
-          className="flex items-center"
+          className="flex"
           style={{ marginLeft: 60 }}
         >
           <div>种类：</div>
@@ -467,7 +467,7 @@ export default function EquipList() {
           ></Select>
         </div>
         <div
-          className="flex items-center"
+          className="flex"
           style={{ marginLeft: 40 }}
         >
           <div>副属性：</div>
