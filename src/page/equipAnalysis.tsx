@@ -4,8 +4,8 @@ import { Tabs, Card, Spin, Tooltip } from 'antd'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { attrMapSelector, equipData, userSelector } from '@/store'
 import { IEquipCustom, SubAttr, IEquipTypePrototype } from '@/interface'
+import { clsx } from 'clsx'
 import util from '@/utils'
-import classnames from 'classnames'
 
 export default function EquipAnalysis() {
   const transNumberToChinese = function (value: number) {
@@ -200,7 +200,7 @@ export default function EquipAnalysis() {
         }}
       ></Tabs>
 
-      <div className="mb-1 flex justify-center space-x-2">
+      <div className="mb-1 flex items-center justify-center space-x-2">
         {scatteredSuit.map((suit: number, suitIndex: number) => {
           return (
             <div
@@ -231,7 +231,7 @@ export default function EquipAnalysis() {
       </div>
 
       <Spin spinning={loading}>
-        <div className="flex flex-wrap">
+        <div className="items-center-wrap flex flex items-center">
           {aData.map((equip: suitData, equipIndex: number) => {
             return (
               <Card
@@ -244,7 +244,7 @@ export default function EquipAnalysis() {
                 }`}
                 key={equipIndex}
                 title={
-                  <div className="flex">
+                  <div className="flex items-center">
                     {equip.id > 0 && (
                       <img
                         src={getImageURL(equip.id)}
@@ -262,12 +262,12 @@ export default function EquipAnalysis() {
                       className="mb-1"
                       key={pIndex}
                     >
-                      <div className="flex space-x-0.5">
+                      <div className="flex items-center space-x-0.5">
                         <div>位置{transNumberToChinese(pIndex + 1)}&nbsp;</div>
                         {p.length > 0 && (
                           <div
-                            className={classnames(
-                              'flex min-w-11 justify-center rounded px-1',
+                            className={clsx(
+                              'flex min-w-11 items-center justify-center rounded px-1',
                               getColorClass(pIndex, p[0].value),
                             )}
                           >
@@ -298,7 +298,7 @@ export default function EquipAnalysis() {
                               }
                             >
                               <div
-                                className={classnames(
+                                className={clsx(
                                   'rounded px-1',
                                   getColorClass(pIndex, p[1].value),
                                 )}
@@ -322,7 +322,7 @@ export default function EquipAnalysis() {
                               }
                             >
                               <div
-                                className={classnames(
+                                className={clsx(
                                   'rounded px-1',
                                   getColorClass(pIndex, p[2].value),
                                 )}

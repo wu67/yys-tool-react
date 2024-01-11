@@ -289,7 +289,7 @@ export default function HeroList() {
         children: result,
         title: () => {
           return (
-            <div className="flex justify-center">
+            <div className="flex items-center justify-center">
               <div>{user.data.player.name}&nbsp;</div>
               <div
                 className="btnSetNotIncluded"
@@ -341,7 +341,7 @@ export default function HeroList() {
         className=""
         style={{ marginBottom: 8 }}
       >
-        <div className="flex">
+        <div className="flex items-center">
           <div>主属性：</div>
           <Checkbox
             indeterminate={isIndeterminate}

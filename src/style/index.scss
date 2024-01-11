@@ -1,4 +1,3 @@
-// @import '~antd/dist/antd.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,7 +5,7 @@
 @layer utilities {
   .flex {
     // 侧轴方向 行与行的开头对齐 行内item的中间对齐
-    @apply content-start items-center;
+    // @apply content-start items-center;
   }
 }
 
