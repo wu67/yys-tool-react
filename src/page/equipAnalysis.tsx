@@ -231,7 +231,7 @@ export default function EquipAnalysis() {
       </div>
 
       <Spin spinning={loading}>
-        <div className="items-center-wrap flex flex items-center">
+        <div className="items-center-wrap flex flex-wrap justify-start">
           {aData.map((equip: suitData, equipIndex: number) => {
             return (
               <Card

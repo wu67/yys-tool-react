@@ -278,7 +278,7 @@ export default function UserData() {
         />
       </div>
 
-      <div className="flex items-center flex items-center-wrap">{cardHTML}</div>
+      <div className="flex items-center flex-wrap">{cardHTML}</div>
     </div>
   )
 }
