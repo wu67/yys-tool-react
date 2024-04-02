@@ -53,11 +53,12 @@ export default function DialogSetNotIncluded(props: IProps) {
   }
 
   const onChange = (
-    nextTargetKeys: string[],
+    nextTargetKeys: React.Key[],
     direction: TransferDirection,
-    moveKeys: string[],
+    moveKeys: React.Key[],
   ) => {
-    setNotIncluded(nextTargetKeys)
+    console.log(moveKeys, 'moveKeys')
+    setNotIncluded(nextTargetKeys.map(String))
   }
 
   const filterOption = (inputValue: string, option: ITransferData) => {
