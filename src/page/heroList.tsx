@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import type { ColumnsType } from 'antd/es/table'
-import { useRecoilState } from 'recoil'
+import { useAtom } from 'jotai'
 import { Table, Checkbox, message } from 'antd'
 import type { CheckboxChangeEvent } from 'antd/es/checkbox'
 import type { CheckboxValueType } from 'antd/es/checkbox/Group'
@@ -12,10 +12,10 @@ import DialogSetNotIncluded from '@/components/dialogSetNotIncluded'
 
 export default function HeroList() {
   const { getNotIncluded, updateUserNotIncluded } = useCommon()
-  const [heroList] = useRecoilState<IBaseHero[]>(allHeroList)
-  const [notIncludedList] = useRecoilState(notIncludedListSelector)
+  const [heroList] = useAtom<IBaseHero[]>(allHeroList)
+  const [notIncludedList] = useAtom(notIncludedListSelector)
 
-  const [userList]: any[] = useRecoilState(userData)
+  const [userList]: any[] = useAtom(userData)
 
   const rarityList = [
     {

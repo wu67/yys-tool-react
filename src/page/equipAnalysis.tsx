@@ -1,7 +1,7 @@
 // import useCommon from '@/useCommon'
 import { useState, useEffect } from 'react'
 import { Tabs, Card, Spin, Tooltip } from 'antd'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useAtom } from 'jotai'
 import { attrMapSelector, equipData, userSelector } from '@/store'
 import { IEquipCustom, SubAttr, IEquipTypePrototype } from '@/interface'
 import { clsx } from 'clsx'
@@ -19,9 +19,9 @@ export default function EquipAnalysis() {
       .href
   }
 
-  const [equipList] = useRecoilState(equipData)
-  const attrMap = useRecoilValue(attrMapSelector)
-  const [userList] = useRecoilState(userSelector)
+  const [equipList] = useAtom(equipData)
+  const [attrMap] = useAtom(attrMapSelector)
+  const [userList] = useAtom(userSelector)
   // 重点套装 版本之子
   const importantSuit = [
     300002, 300010, 300012, 300019, 300021, 300023, 300034, 300079, 300080,
@@ -192,7 +192,7 @@ export default function EquipAnalysis() {
         items={userList.map((user: any, userIndex: number) => {
           return {
             label: user.data.player.name,
-            key: userIndex,
+            key: `${userIndex}`,
           }
         })}
         onTabClick={(key) => {
@@ -235,8 +235,10 @@ export default function EquipAnalysis() {
           {aData.map((equip: suitData, equipIndex: number) => {
             return (
               <Card
-                headStyle={{ padding: '0 0 0 7px' }}
-                bodyStyle={{ padding: '20px 0 10px 7px' }}
+                styles={{
+                  header: { padding: '0 0 0 7px' },
+                  body: { padding: '20px 0 10px 7px' },
+                }}
                 className={`mb-2.5 mr-2 min-h-[140px] w-[149px] ${
                   importantSuit.indexOf(equip.id) !== -1
                     ? 'border-orange-200 bg-orange-100'

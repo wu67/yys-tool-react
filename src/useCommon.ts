@@ -1,20 +1,21 @@
 import Dexie from 'dexie'
 import { useState } from 'react'
 import $dayjs from 'dayjs'
-import { useSetRecoilState } from 'recoil'
+import { useAtom } from 'jotai'
 import $db from './db'
 import { userSelector, notIncludedListSelector } from '@/store'
 
 export default function useCommon() {
   const db = $db
-  const setUserByIndex = useSetRecoilState(userSelector)
-  const setNotIncluded = useSetRecoilState(notIncludedListSelector)
+  const [$userSelector, setUserByIndex] = useAtom(userSelector)
+  const [$notIncludedListSelector, setNotIncluded] = useAtom(
+    notIncludedListSelector,
+  )
 
   // 这个值永远也不需要被代码更新
   const [commonNotIncluded] = useState([
     387, 386, 373, 360, 359, 337, 336, 319, 313, 314, 310, 309, 308, 305, 294,
   ])
-  let [stest, updateStest] = useState(0)
 
   const formatTime = (date: any, format = 'YYYY-MM-DD HH:mm:ss') => {
     let str = ''
@@ -41,7 +42,7 @@ export default function useCommon() {
     })
   }
   const getUserData = () => {
-    let result: any[] = []
+    const result: any[] = []
 
     // if (Array.isArray(user) && user.length > 0) {
     //   return Promise.resolve(user)
@@ -94,7 +95,7 @@ export default function useCommon() {
     return target
   }
   const getNotIncluded = () => {
-    let result: number[][] = []
+    const result: number[][] = []
     return db.not_included
       .each((record: any) => {
         result.push(record.content)
@@ -108,8 +109,6 @@ export default function useCommon() {
       })
   }
   return {
-    stest,
-    updateStest,
     db,
     commonNotIncluded,
     formatTime,

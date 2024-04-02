@@ -4,7 +4,7 @@ just test my react skill here
 
 ###
 
-react + recoil + dexie + antd
+react + jotai + dexie + antd
 
 ## step by step
 

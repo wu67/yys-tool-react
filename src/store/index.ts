@@ -1,4 +1,4 @@
-import { atom, selector, DefaultValue } from 'recoil'
+import { atom } from 'jotai'
 import util from '@/utils'
 import {
   IBaseHero,
@@ -10,150 +10,126 @@ import {
 } from '@/interface'
 
 // 装备数据
-export const equipData = atom({
-  key: 'equipData',
-  default: [] as IEquipTypePrototype[],
+export const equipData = atom([] as IEquipTypePrototype[])
+
+export const equipMapSelector = atom((get) => {
+  const result: { [x: string]: string } = {}
+  get(equipData).forEach((item: IEquipTypePrototype) => {
+    result[`${item.id}`] = item.name
+  })
+  return result
 })
 
-export const equipMapSelector = selector({
-  key: 'equipMapSelector',
-  get: ({ get }) => {
-    let result: { [x: string]: string } = {}
-    get(equipData).forEach((item: IEquipTypePrototype) => {
-      result[`${item.id}`] = item.name
-    })
-    return result
+export const allHeroList = atom([] as IBaseHero[])
+
+export const attrData = atom([
+  {
+    key: 'Speed',
+    name: '速度',
+    nick: '速',
+    minStep: 2.4,
+    avgStep: 2.7,
+    maxStep: 3,
   },
-})
+  {
+    key: 'CritRate',
+    name: '暴击',
+    nick: '暴',
+    minStep: 2.4,
+    avgStep: 2.7,
+    maxStep: 3,
+  },
+  {
+    key: 'AttackRate',
+    name: '攻击加成',
+    nick: '攻',
+    minStep: 2.4,
+    avgStep: 2.7,
+    maxStep: 3,
+  },
+  {
+    key: 'CritPower',
+    name: '暴击伤害',
+    nick: '爆',
+    minStep: 3.2,
+    avgStep: 3.6,
+    maxStep: 4,
+  },
+  {
+    key: 'EffectHitRate',
+    name: '效果命中',
+    nick: '命',
+    minStep: 3.2,
+    avgStep: 3.6,
+    maxStep: 4,
+  },
+  {
+    key: 'EffectResistRate',
+    name: '效果抵抗',
+    nick: '抗',
+    minStep: 3.2,
+    avgStep: 3.6,
+    maxStep: 4,
+  },
+  {
+    key: 'HpRate',
+    name: '生命加成',
+    nick: '生',
+    minStep: 2.4,
+    avgStep: 2.7,
+    maxStep: 3,
+  },
+  {
+    key: 'DefenseRate',
+    name: '防御加成',
+    nick: '防',
+    minStep: 2.4,
+    avgStep: 2.7,
+    maxStep: 3,
+  },
+  {
+    key: 'Attack',
+    name: '攻击',
+    nick: '',
+  },
+  {
+    key: 'Defense',
+    name: '防御',
+    nick: '',
+  },
+  {
+    key: 'Hp',
+    name: '生命',
+    nick: '',
+  },
+])
 
-export const allHeroList = atom({
-  key: 'allHeroList',
-  default: [] as IBaseHero[],
-})
-
-export const attrData = atom({
-  key: 'attrData',
-  default: [
-    {
-      key: 'Speed',
-      name: '速度',
-      nick: '速',
-      minStep: 2.4,
-      avgStep: 2.7,
-      maxStep: 3,
-    },
-    {
-      key: 'CritRate',
-      name: '暴击',
-      nick: '暴',
-      minStep: 2.4,
-      avgStep: 2.7,
-      maxStep: 3,
-    },
-    {
-      key: 'AttackRate',
-      name: '攻击加成',
-      nick: '攻',
-      minStep: 2.4,
-      avgStep: 2.7,
-      maxStep: 3,
-    },
-    {
-      key: 'CritPower',
-      name: '暴击伤害',
-      nick: '爆',
-      minStep: 3.2,
-      avgStep: 3.6,
-      maxStep: 4,
-    },
-    {
-      key: 'EffectHitRate',
-      name: '效果命中',
-      nick: '命',
-      minStep: 3.2,
-      avgStep: 3.6,
-      maxStep: 4,
-    },
-    {
-      key: 'EffectResistRate',
-      name: '效果抵抗',
-      nick: '抗',
-      minStep: 3.2,
-      avgStep: 3.6,
-      maxStep: 4,
-    },
-    {
-      key: 'HpRate',
-      name: '生命加成',
-      nick: '生',
-      minStep: 2.4,
-      avgStep: 2.7,
-      maxStep: 3,
-    },
-    {
-      key: 'DefenseRate',
-      name: '防御加成',
-      nick: '防',
-      minStep: 2.4,
-      avgStep: 2.7,
-      maxStep: 3,
-    },
-    {
-      key: 'Attack',
-      name: '攻击',
-      nick: '',
-    },
-    {
-      key: 'Defense',
-      name: '防御',
-      nick: '',
-    },
-    {
-      key: 'Hp',
-      name: '生命',
-      nick: '',
-    },
-  ],
-})
-
-export const attrMapSelector = selector({
-  key: 'attrMapSelector',
-  get: ({ get }) =>
-    get(attrData).reduce(
-      (
-        result: {
-          [x: string]: string
-        },
-        current: IEquipAttrPrototype,
-      ) => {
-        result[`${current.key}`] = current.name
-        return result
+export const attrMapSelector = atom((get) =>
+  get(attrData).reduce(
+    (
+      result: {
+        [x: string]: string
       },
-      {},
-    ),
-})
+      current: IEquipAttrPrototype,
+    ) => {
+      result[`${current.key}`] = current.name
+      return result
+    },
+    {},
+  ),
+)
 
 // 有效属性列表. 除去小攻击 小防御 小生命之外的均为有效
-export const effectiveAttrSelector = selector({
-  key: 'effectiveAttrSelector',
-  get: ({ get }) => get(attrData).slice(0, 8),
-})
+export const effectiveAttrSelector = atom((get) => get(attrData).slice(0, 8))
 
-export const notPercentAttr = atom({
-  key: 'notPercentAttr',
-  default: ['Speed', 'Attack', 'Defense', 'Hp'] as string[],
-})
+export const notPercentAttr = atom(['Speed', 'Attack', 'Defense', 'Hp'])
 
-export const notIncludedList = atom({
-  key: 'notIncludedList',
-  default: [] as any[],
-})
+export const notIncludedList = atom([] as any[])
 
-export const notIncludedListSelector = selector({
-  key: 'notIncludedListSelector',
-  get: ({ get }) => get(notIncludedList),
+export const notIncludedListSelector = atom(
+  (get) => get(notIncludedList),
   // payload { index: num, value }. index: -1新增， -2整组替换，>-1目标值替换
-  set: ({ get, set }, payload: any) => {
+  (get, set, payload: any) => {
     let temp: number[] = Object.assign([], get(notIncludedList))
     if (payload.index === -1) {
       temp.push(payload.value)
@@ -163,9 +139,9 @@ export const notIncludedListSelector = selector({
       temp[payload.index] = payload.value
     }
 
-    set(notIncludedList, payload instanceof DefaultValue ? payload : temp)
+    set(notIncludedList, temp)
   },
-})
+)
 
 interface IUserData {
   data: any
@@ -173,17 +149,14 @@ interface IUserData {
 }
 
 // 原始用户数据
-export const userData = atom({
-  key: 'userData',
-  default: [] as IUserData[],
-})
+export const userData = atom([] as IUserData[])
 
-export const userSelector = selector({
-  key: 'userSelector',
+export const userSelector = atom(
   // 经过处理的用户数据列表
-  get: ({ get }) => {
+  (get) => {
+    console.log(get(userData), 'get(userData)')
     return get(userData).map((user: any) => {
-      let newUser = JSON.parse(JSON.stringify(user))
+      const newUser = JSON.parse(JSON.stringify(user))
       const notPercentAttrList: string[] = get(notPercentAttr)
       const equipDataList = get(equipData)
       const attrList: any[] = get(attrData)
@@ -252,7 +225,7 @@ export const userSelector = selector({
     })
   },
   // payload { index: num, value }. index: -1新增， -2整组替换，>-1目标值替换
-  set: ({ get, set }, payload: any) => {
+  (get, set, payload: any) => {
     let newUser: any[] = Object.assign([], get(userData))
     if (payload.index === -1) {
       newUser.push(payload.value)
@@ -261,6 +234,7 @@ export const userSelector = selector({
     } else {
       newUser[payload.index] = payload.value
     }
-    set(userData, payload instanceof DefaultValue ? payload : newUser)
+    console.log('set set set', payload)
+    set(userData, newUser)
   },
-})
+)

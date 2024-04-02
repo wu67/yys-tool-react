@@ -2,7 +2,7 @@ import { Checkbox, Select, Tabs, Table, Pagination } from 'antd'
 import type { ColumnsType } from 'antd/es/table'
 import type { CheckboxChangeEvent } from 'antd/es/checkbox'
 import type { CheckboxValueType } from 'antd/es/checkbox/Group'
-import { useRecoilValue } from 'recoil'
+import { useAtom } from 'jotai'
 import { useEffect, useState } from 'react'
 import useCommon from '@/useCommon'
 import util from '@/utils'
@@ -19,10 +19,10 @@ import '@/style/src/equipList.scss'
 
 export default function EquipList() {
   const { formatTime } = useCommon()
-  const effectiveAttrList = useRecoilValue(effectiveAttrSelector)
-  const equipMap = useRecoilValue(equipMapSelector)
-  const equipDataList = useRecoilValue(equipData)
-  const attrMap = useRecoilValue(attrMapSelector)
+  const [effectiveAttrList] = useAtom(effectiveAttrSelector)
+  const [equipMap] = useAtom(equipMapSelector)
+  const [equipDataList] = useAtom(equipData)
+  const [attrMap] = useAtom(attrMapSelector)
 
   const transAttrToName = function (attr: string) {
     return attrMap[attr]
@@ -31,7 +31,7 @@ export default function EquipList() {
     return util.transNumberToChinese(value)
   }
 
-  const attrList = useRecoilValue(attrData)
+  const [attrList] = useAtom(attrData)
 
   const [isIndeterminateAllAttr, setIsIndeterminateAllAttr] = useState(false)
   const [checkAllAttr, setCheckAllAttr] = useState(true)
@@ -200,7 +200,7 @@ export default function EquipList() {
 
   // const [equipTableRef] = useState()
 
-  const userList = useRecoilValue(userSelector)
+  const [userList] = useAtom(userSelector)
   const initData = () => {
     if (!userList[parseInt(currentUser)]) return
     const data = userList[parseInt(currentUser)].data
@@ -374,7 +374,7 @@ export default function EquipList() {
           items={userList.map((user: any, userIndex: number) => {
             return {
               label: user.data.player.name,
-              key: userIndex,
+              key: `${userIndex}`,
             }
           })}
           onTabClick={(key) => {

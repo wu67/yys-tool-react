@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import type { MenuProps } from 'antd'
 import { Menu, Spin } from 'antd'
-import { useSetRecoilState } from 'recoil'
+import { useAtom } from 'jotai'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 
 import allHeroJSON from '@/assets/all_hero.json'
@@ -13,8 +13,8 @@ import useCommon from '@/useCommon'
 import './app.scss'
 
 const App = () => {
-  const updateHeroList = useSetRecoilState(allHeroList)
-  const updateEquipData = useSetRecoilState(equipData)
+  const [$allHeroList, updateHeroList] = useAtom(allHeroList)
+  const [$equipData, updateEquipData] = useAtom(equipData)
   // 获取固定数据
   useEffect(() => {
     if (allHeroJSON) {

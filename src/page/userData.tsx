@@ -1,5 +1,5 @@
 import useCommon from '@/useCommon'
-import { useRecoilValue } from 'recoil'
+import { useAtom } from 'jotai'
 import { userData } from '@/store'
 import { Card, Modal, message } from 'antd'
 import '@/style/src/userData.scss'
@@ -14,7 +14,7 @@ export default function UserData() {
     updateUserNotIncluded,
   } = useCommon()
 
-  const user = useRecoilValue(userData)
+  const [user] = useAtom(userData)
 
   const onUserDataInput = (e: any, index: number) => {
     const files = e.target.files || e.dataTransfer.files
@@ -113,7 +113,7 @@ export default function UserData() {
         className="user-card"
         key={userItem.data.player.id | index}
         title={
-          <div className="card-title flex items-center place-content-between">
+          <div className="card-title flex place-content-between items-center">
             <span>
               lv.{userItem.data.player.level}&nbsp;{userItem.data.player.name}
             </span>
@@ -278,7 +278,7 @@ export default function UserData() {
         />
       </div>
 
-      <div className="flex items-center flex-wrap">{cardHTML}</div>
+      <div className="flex flex-wrap items-center">{cardHTML}</div>
     </div>
   )
 }
