@@ -7,14 +7,14 @@
     "antd": "^5.16.0",
     "clsx": "^2.1.0",
     "dayjs": "~1.11.10",
-    "dexie": "^3.2.7",
+    "dexie": "^4.0.1",
     "jotai": "^2.7.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3"
   },
   "devDependencies": {
-    "@types/react": "^18.2.73",
+    "@types/react": "^18.2.74",
     "@types/react-dom": "^18.2.23",
     "@typescript-eslint/eslint-plugin": "^7.5.0",
     "@typescript-eslint/parser": "^7.5.0",
