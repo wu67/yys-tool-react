@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import type { MenuProps } from 'antd'
 import { Menu, Spin } from 'antd'
-import { useAtom } from 'jotai'
+import { useSetAtom } from 'jotai'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 
 import allHeroJSON from '@/assets/all_hero.json'
@@ -13,8 +13,8 @@ import useCommon from '@/useCommon'
 import './app.scss'
 
 const App = () => {
-  const [$allHeroList, updateHeroList] = useAtom(allHeroList)
-  const [$equipData, updateEquipData] = useAtom(equipData)
+  const updateHeroList = useSetAtom(allHeroList)
+  const updateEquipData = useSetAtom(equipData)
   // 获取固定数据
   useEffect(() => {
     if (allHeroJSON) {

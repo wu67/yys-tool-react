@@ -57,7 +57,6 @@ export default function DialogSetNotIncluded(props: IProps) {
     direction: TransferDirection,
     moveKeys: React.Key[],
   ) => {
-    console.log(moveKeys, 'moveKeys')
     setNotIncluded(nextTargetKeys.map(String))
   }
 

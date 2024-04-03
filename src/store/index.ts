@@ -106,16 +106,13 @@ export const attrData = atom([
 
 export const attrMapSelector = atom((get) =>
   get(attrData).reduce(
-    (
-      result: {
-        [x: string]: string
-      },
-      current: IEquipAttrPrototype,
-    ) => {
+    (result, current: IEquipAttrPrototype) => {
       result[`${current.key}`] = current.name
       return result
     },
-    {},
+    {} as {
+      [x: string]: string
+    },
   ),
 )
 
@@ -153,9 +150,8 @@ export const userData = atom([] as IUserData[])
 
 export const userSelector = atom(
   // 经过处理的用户数据列表
-  (get) => {
-    console.log(get(userData), 'get(userData)')
-    return get(userData).map((user: any) => {
+  (get) =>
+    get(userData).map((user: any) => {
       const newUser = JSON.parse(JSON.stringify(user))
       const notPercentAttrList: string[] = get(notPercentAttr)
       const equipDataList = get(equipData)
@@ -222,8 +218,7 @@ export const userSelector = atom(
       })
 
       return newUser
-    })
-  },
+    }),
   // payload { index: num, value }. index: -1新增， -2整组替换，>-1目标值替换
   (get, set, payload: any) => {
     let newUser: any[] = Object.assign([], get(userData))
@@ -234,7 +229,6 @@ export const userSelector = atom(
     } else {
       newUser[payload.index] = payload.value
     }
-    console.log('set set set', payload)
     set(userData, newUser)
   },
 )

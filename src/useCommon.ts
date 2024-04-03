@@ -1,16 +1,14 @@
 import Dexie from 'dexie'
 import { useState } from 'react'
 import $dayjs from 'dayjs'
-import { useAtom } from 'jotai'
+import { useSetAtom } from 'jotai'
 import $db from './db'
 import { userSelector, notIncludedListSelector } from '@/store'
 
 export default function useCommon() {
   const db = $db
-  const [$userSelector, setUserByIndex] = useAtom(userSelector)
-  const [$notIncludedListSelector, setNotIncluded] = useAtom(
-    notIncludedListSelector,
-  )
+  const setUserByIndex = useSetAtom(userSelector)
+  const setNotIncluded = useSetAtom(notIncludedListSelector)
 
   // 这个值永远也不需要被代码更新
   const [commonNotIncluded] = useState([
