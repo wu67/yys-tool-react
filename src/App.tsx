@@ -12,7 +12,7 @@ import { allHeroList, equipData } from '@/store'
 import useCommon from '@/useCommon'
 import './app.scss'
 
-const App = () => {
+export default function App() {
   const updateHeroList = useSetAtom(allHeroList)
   const updateEquipData = useSetAtom(equipData)
   // 获取固定数据
@@ -125,5 +125,3 @@ const App = () => {
     </div>
   )
 }
-
-export default App
