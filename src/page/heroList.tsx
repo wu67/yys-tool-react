@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import type { ColumnsType } from 'antd/es/table'
 import { useAtom } from 'jotai'
-import { Table, Checkbox, message } from 'antd'
+import { Table, Checkbox, App } from 'antd'
 import type { CheckboxChangeEvent } from 'antd/es/checkbox'
 import type { CheckboxValueType } from 'antd/es/checkbox/Group'
 import useCommon from '@/useCommon'
@@ -11,6 +11,7 @@ import '@/style/src/heroList.scss'
 import DialogSetNotIncluded from '@/components/dialogSetNotIncluded'
 
 export default function HeroList() {
+  const { message } = App.useApp()
   const { getNotIncluded, updateUserNotIncluded } = useCommon()
   const [heroList] = useAtom<IBaseHero[]>(allHeroList)
   const [notIncludedList] = useAtom(notIncludedListSelector)
@@ -322,9 +323,7 @@ export default function HeroList() {
       width: 80,
     },
   ]
-  const tableColumn: ColumnsType<any> = columns
-    .concat(userColumns)
-    .concat(columns2)
+  const tableColumn: ColumnsType<any> = columns.concat(userColumns, columns2)
 
   return (
     <div className="hero-list">

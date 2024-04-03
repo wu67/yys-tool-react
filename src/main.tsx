@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { ConfigProvider } from 'antd'
+import { ConfigProvider, App } from 'antd'
 import locale from 'antd/es/locale/zh_CN'
 import { RouterProvider } from 'react-router-dom'
 
@@ -21,6 +21,8 @@ root.render(
       },
     }}
   >
-    <RouterProvider router={router}></RouterProvider>
+    <App>
+      <RouterProvider router={router}></RouterProvider>
+    </App>
   </ConfigProvider>,
 )

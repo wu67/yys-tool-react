@@ -1,10 +1,11 @@
 import useCommon from '@/useCommon'
 import { useAtom } from 'jotai'
 import { userData } from '@/store'
-import { Card, Modal, message } from 'antd'
+import { Card, Modal, App } from 'antd'
 import '@/style/src/userData.scss'
 
 export default function UserData() {
+  const { message } = App.useApp()
   const {
     commonNotIncluded,
     formatTime,
