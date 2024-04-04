@@ -1,17 +1,12 @@
-// import useCommon from '@/useCommon'
 import { useState, useEffect } from 'react'
 import { Tabs, Card, Spin, Tooltip } from 'antd'
 import { useAtom } from 'jotai'
 import { attrMapSelector, equipData, userSelector } from '@/store'
 import { IEquipCustom, SubAttr, IEquipTypePrototype } from '@/interface'
 import { clsx } from 'clsx'
-import util from '@/utils'
+import { transNumberToChinese, getAttrSum } from '@/utils'
 
 export default function EquipAnalysis() {
-  const transNumberToChinese = function (value: number) {
-    return util.transNumberToChinese(value)
-  }
-
   const [loading, setLoading] = useState(false)
 
   const getImageURL = function (suitCode: number) {
@@ -74,7 +69,7 @@ export default function EquipAnalysis() {
       userList[parseInt(currentUser)].data.hero_equips.forEach(
         (item: IEquipCustom & SubAttr) => {
           if (item.suit_id === equip.id) {
-            const sum = util.getAttrSum(item, attrName)
+            const sum = getAttrSum(item, attrName)
 
             if (
               (sum > 15 && item.pos !== 1) ||

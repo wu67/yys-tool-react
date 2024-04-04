@@ -1,5 +1,5 @@
 import { atom } from 'jotai'
-import util from '@/utils'
+import { multiply } from '@/utils'
 import {
   IBaseHero,
   IEquipTypePrototype,
@@ -181,7 +181,7 @@ export const userSelector = atom(
         // 处理副属性
         for (const rAttr of item.random_attrs) {
           if (notPercentAttrList.indexOf(rAttr.type) === -1) {
-            result[`${rAttr.type}`] = util.multiply(rAttr.value)
+            result[`${rAttr.type}`] = multiply(rAttr.value)
           } else {
             result[`${rAttr.type}`] = rAttr.value
           }
@@ -197,7 +197,7 @@ export const userSelector = atom(
 
         // 处理主属性
         if (notPercentAttrList.indexOf(item.base_attr.type) === -1) {
-          result.mainAttr.value = util.multiply(item.base_attr.value)
+          result.mainAttr.value = multiply(item.base_attr.value)
         } else {
           result.mainAttr.value = item.base_attr.value
         }
@@ -206,7 +206,7 @@ export const userSelector = atom(
         if (item.single_attrs.length > 0) {
           result.single_attrs.push({
             type: item.single_attrs[0].type,
-            value: util.multiply(item.single_attrs[0].value),
+            value: multiply(item.single_attrs[0].value),
           })
           // 御魂评分. 固定属性如果是有效属性, 算3分
           if (effectiveAttr.indexOf(item.single_attrs[0].type) !== -1) {

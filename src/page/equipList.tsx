@@ -5,7 +5,7 @@ import type { CheckboxValueType } from 'antd/es/checkbox/Group'
 import { useAtom } from 'jotai'
 import { useEffect, useState } from 'react'
 import useCommon from '@/useCommon'
-import util from '@/utils'
+import { transNumberToChinese, getAttrSum } from '@/utils'
 import { IEquipAttrPrototype, IEquipCustom } from '@/interface'
 import {
   attrMapSelector,
@@ -26,9 +26,6 @@ export default function EquipList() {
 
   const transAttrToName = function (attr: string) {
     return attrMap[attr]
-  }
-  const transNumberToChinese = function (value: number) {
-    return util.transNumberToChinese(value)
   }
 
   const [attrList] = useAtom(attrData)
@@ -120,10 +117,10 @@ export default function EquipList() {
 
     if (order === 'descend') {
       // 从高到低
-      sortMethod = (a, b) => util.getAttrSum(b, prop) - util.getAttrSum(a, prop)
+      sortMethod = (a, b) => getAttrSum(b, prop) - getAttrSum(a, prop)
     } else if (order === 'ascend') {
       // 从低到高
-      sortMethod = (a, b) => util.getAttrSum(a, prop) - util.getAttrSum(b, prop)
+      sortMethod = (a, b) => getAttrSum(a, prop) - getAttrSum(b, prop)
     } else {
       // 此时order为空
     }
