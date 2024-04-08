@@ -3,7 +3,7 @@ import type { ColumnsType } from 'antd/es/table'
 import type { CheckboxChangeEvent } from 'antd/es/checkbox'
 import type { CheckboxValueType } from 'antd/es/checkbox/Group'
 import { useAtom } from 'jotai'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import useCommon from '@/useCommon'
 import { transNumberToChinese, getAttrSum } from '@/utils'
 import { IEquipAttrPrototype, IEquipCustom } from '@/interface'
@@ -138,8 +138,6 @@ export default function EquipList() {
   const [pageSize, setPageSize] = useState(10)
   // 被过滤过的数据，未分页过的。
   const [list, setList] = useState([])
-  // 将数据分页。动辄上千行数据，全部渲染的话，会比较耗时
-  const [listView, setListView] = useState([])
 
   const ifEquipUseless = function (count: number, level: number) {
     return (level === 0 && count <= 2) || (level === 15 && count <= 4)
@@ -154,9 +152,9 @@ export default function EquipList() {
     }
   }
 
-  useEffect(() => {
-    // console.log('重新计算用于展示的数组')
-    setListView(
+  // 将数据分页。动辄上千行数据，全部渲染的话，会比较耗时
+  const listView = useMemo(
+    () =>
       list.length < pageSize
         ? list
         : list.slice(
@@ -165,8 +163,8 @@ export default function EquipList() {
               ? currentPage * pageSize
               : list.length,
           ),
-    )
-  }, [list, currentPage, pageSize])
+    [list, currentPage, pageSize],
+  )
 
   useEffect(() => {
     if (loaded) {
@@ -179,9 +177,10 @@ export default function EquipList() {
 
   const [checkEquipType, setCheckEquipType] = useState(0)
   const [randomAttrsLengthFilter, setRandomAttrsLengthFilter] = useState('')
+
   useEffect(() => {
     if (loaded) {
-      initData()
+      generateList()
     }
   }, [
     currentUser,
@@ -195,14 +194,11 @@ export default function EquipList() {
     randomAttrsLengthFilter,
   ])
 
-  // const [equipTableRef] = useState()
-
   const [userList] = useAtom(userSelector)
-  const initData = () => {
+  const generateList = () => {
     if (!userList[parseInt(currentUser)]) return
-    const data = userList[parseInt(currentUser)].data
 
-    const tempList = data.hero_equips
+    const tempList = userList[parseInt(currentUser)].data.hero_equips
       .filter((item: IEquipCustom) => {
         return (
           checkAttrList.indexOf(item.mainAttr.type) !== -1 &&
@@ -226,15 +222,12 @@ export default function EquipList() {
       })
 
     setList(tempList)
-    // if (equipTableRef && typeof equipTableRef.clearSort === 'function') {
-    //   equipTableRef.clearSort()
-    // }
   }
   const [loaded, setLoaded] = useState(false)
   // mount
   useEffect(() => {
     initPageSize()
-    initData()
+    generateList()
     setLoaded(true)
   }, [])
   // 以下为html部分

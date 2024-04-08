@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import type { ColumnsType } from 'antd/es/table'
 import { useAtom } from 'jotai'
 import { Table, Checkbox, App } from 'antd'
@@ -50,8 +50,6 @@ export default function HeroList() {
   ]
 
   const [shards, setShards] = useState([] as any[])
-  // type HeroList = number[]
-  // const [heroIdList, setHeroIdList] = useState<HeroList[]>([])
 
   const getShards = function () {
     interface IBaseHeroTableItem extends IHero {
@@ -128,26 +126,6 @@ export default function HeroList() {
 
   const [checkList, setCheckList] = useState<CheckboxValueType[]>(['SP', 'SSR'])
 
-  const [shardsListView, setShardsListView] = useState([] as any[])
-  useEffect(() => {
-    // const computedShardsList = computed(() => {
-    let result = []
-    if (checkList.indexOf('INTERACTIVE') !== -1) {
-      result = shards.filter((item: IHero) => {
-        return checkList.indexOf(item.rarity) !== -1 || item.interactive
-      })
-    } else {
-      result = shards.filter((item: IHero) => {
-        return (
-          checkList.indexOf(item.rarity) !== -1 &&
-          !(typeof item.interactive !== 'undefined')
-        )
-      })
-    }
-
-    setShardsListView(result)
-    // })
-  }, [checkList, shards])
   const [isIndeterminate, setIsIndeterminate] = useState(true)
   const handleCheckAllChange = function (e: CheckboxChangeEvent) {
     setCheckAll(e.target.checked)
@@ -160,11 +138,6 @@ export default function HeroList() {
     setCheckList(value)
     setIsIndeterminate(value.length > 0 && value.length < rarityList.length)
   }
-
-  // const [shardTableRef, setShardTableRef] = useState()
-  // const clearFilter = function () {
-  // shardTableRef.clearFilter()
-  // }
 
   const filterIncluded = function (value: any, row: any, index: number) {
     return value === row.included[index]
@@ -200,10 +173,27 @@ export default function HeroList() {
     getNotIncluded()
   }, [])
   useEffect(() => {
-    if (notIncludedList.length > 0) {
+    if (notIncludedList.length) {
       getShards()
     }
   }, [notIncludedList])
+
+  const shardsListView = useMemo(() => {
+    let result = []
+    if (checkList.indexOf('INTERACTIVE') !== -1) {
+      result = shards.filter((item: IHero) => {
+        return checkList.indexOf(item.rarity) !== -1 || item.interactive
+      })
+    } else {
+      result = shards.filter((item: IHero) => {
+        return (
+          checkList.indexOf(item.rarity) !== -1 &&
+          !(typeof item.interactive !== 'undefined')
+        )
+      })
+    }
+    return result
+  }, [checkList, shards])
 
   const columns: ColumnsType<any> = [
     {

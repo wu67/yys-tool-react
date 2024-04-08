@@ -8,7 +8,6 @@ import { transNumberToChinese, getAttrSum } from '@/utils'
 
 export default function EquipAnalysis() {
   const [loading, setLoading] = useState(false)
-
   const getImageURL = function (suitCode: number) {
     return new URL(`/src/assets/suit_icon/${suitCode}.png`, import.meta.url)
       .href
