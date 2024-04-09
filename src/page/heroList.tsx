@@ -57,8 +57,6 @@ export default function HeroList() {
     }
 
     const result = heroList
-      .slice()
-      .sort((a: IBaseHero, b: IBaseHero) => b.id - a.id)
       .map((item: IBaseHero) => {
         const obj: IBaseHeroTableItem = {
           name: item.name,
@@ -112,6 +110,7 @@ export default function HeroList() {
         // obj.key = item.id
         return obj
       })
+      .sort((a: IBaseHero, b: IBaseHero) => b.id - a.id)
     setShards(result)
   }
   const transformRarityName = function (rarity: string) {
