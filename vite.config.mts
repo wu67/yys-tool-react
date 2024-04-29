@@ -28,7 +28,7 @@ export default defineConfig(({ mode }) => {
     },
     build: {
       // 设置最终构建的浏览器兼容目标
-      target: 'es2015',
+      target: 'es2020',
       // 构建后是否生成 source map 文件
       sourcemap: mode !== 'production',
       // 启用/禁用 gzip 压缩大小报告
