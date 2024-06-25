@@ -1,7 +1,6 @@
 import { Checkbox, Select, Tabs, Table, Pagination } from 'antd'
 import type { ColumnsType } from 'antd/es/table'
 import type { CheckboxChangeEvent } from 'antd/es/checkbox'
-import type { CheckboxValueType } from 'antd/es/checkbox/Group'
 import { useAtom } from 'jotai'
 import { useEffect, useState, useMemo } from 'react'
 import useCommon from '@/useCommon'
@@ -44,11 +43,11 @@ export default function EquipList() {
     setCurrentPage(1)
   }
 
-  const [checkAttrList, setCheckAttrList] = useState<CheckboxValueType[]>(
+  const [checkAttrList, setCheckAttrList] = useState<string[]>(
     attrList.map((item: IEquipAttrPrototype) => item.key),
   )
   // 单个属性被勾选change
-  const handleCheckedAttrChange = function (value: CheckboxValueType[]) {
+  const handleCheckedAttrChange = function (value: string[]) {
     setCheckAttrList(value)
     setIsIndeterminateAllAttr(
       value.length > 0 && value.length < attrList.length,
@@ -57,7 +56,7 @@ export default function EquipList() {
   }
 
   const checkListOrigin = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
-  const [checkLevelList, setCheckLevelList] = useState<CheckboxValueType[]>(
+  const [checkLevelList, setCheckLevelList] = useState<number[]>(
     checkListOrigin.slice(),
   )
   const [isIndeterminateAllLevel, setIsIndeterminateAllLevel] = useState(false)
@@ -68,7 +67,7 @@ export default function EquipList() {
     setCurrentPage(1)
   }
   const [checkAllLevel, setCheckAllLevel] = useState(true)
-  const handleCheckedLevelChange = function (value: CheckboxValueType[]) {
+  const handleCheckedLevelChange = function (value: number[]) {
     // setCheckAllLevel(16 === value.length)
     setCheckLevelList(value)
     setIsIndeterminateAllLevel(value.length > 0 && value.length < 16)
@@ -80,9 +79,9 @@ export default function EquipList() {
   const [isIndeterminateAllPosition, setIsIndeterminateAllPosition] =
     useState(false)
   const checkPositionOrigin = [0, 1, 2, 3, 4, 5]
-  const [checkPositionList, setCheckPositionList] = useState<
-    CheckboxValueType[]
-  >(checkPositionOrigin.slice())
+  const [checkPositionList, setCheckPositionList] = useState<number[]>(
+    checkPositionOrigin.slice(),
+  )
 
   const handleCheckAllPositionChange = function (e: CheckboxChangeEvent) {
     setCheckAllPosition(e.target.checked)
@@ -90,7 +89,7 @@ export default function EquipList() {
     setIsIndeterminateAllPosition(false)
     setCurrentPage(1)
   }
-  const handleCheckedPositionChange = function (value: CheckboxValueType[]) {
+  const handleCheckedPositionChange = function (value: number[]) {
     setCheckPositionList(value)
     // setCheckAllPosition(6 === value.length)
     setIsIndeterminateAllPosition(value.length > 0 && value.length < 6)

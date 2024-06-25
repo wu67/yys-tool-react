@@ -4,30 +4,30 @@
   "private": true,
   "homepage": "https://wu67.github.io/yys-tool-react",
   "dependencies": {
-    "antd": "^5.17.0",
+    "antd": "^5.18.3",
     "clsx": "^2.1.1",
     "dayjs": "~1.11.11",
-    "dexie": "^4.0.4",
+    "dexie": "^4.0.7",
     "html2canvas": "^1.4.1",
-    "jotai": "^2.8.0",
+    "jotai": "^2.8.3",
     "jspdf": "^2.5.1",
     "react": "~18.3.1",
     "react-dom": "~18.3.1",
-    "react-router-dom": "^6.23.0"
+    "react-router-dom": "^6.24.0"
   },
   "devDependencies": {
-    "@types/react": "^18.3.1",
+    "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react-swc": "^3.6.0",
+    "@vitejs/plugin-react-swc": "^3.7.0",
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.38",
-    "prettier": "^3.2.5",
-    "prettier-plugin-tailwindcss": "^0.5.14",
+    "prettier": "^3.3.2",
+    "prettier-plugin-tailwindcss": "^0.6.5",
     "rollup-plugin-visualizer": "^5.12.0",
-    "sass": "^1.76.0",
-    "tailwindcss": "^3.4.3",
-    "typescript": "^5.4.5",
-    "vite": "^5.2.11"
+    "sass": "^1.77.6",
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5.5.2",
+    "vite": "^5.3.1"
   },
   "scripts": {
     "dev": "VITE_CJS_TRACE=true vite",

@@ -3,7 +3,6 @@ import type { ColumnsType } from 'antd/es/table'
 import { useAtom } from 'jotai'
 import { Table, Checkbox, App } from 'antd'
 import type { CheckboxChangeEvent } from 'antd/es/checkbox'
-import type { CheckboxValueType } from 'antd/es/checkbox/Group'
 import useCommon from '@/useCommon'
 import { allHeroList, notIncludedListSelector, userData } from '@/store'
 import { IBaseHero, IHero, hero_book_shards } from '@/interface'
@@ -123,7 +122,7 @@ export default function HeroList() {
     return result
   }
 
-  const [checkList, setCheckList] = useState<CheckboxValueType[]>(['SP', 'SSR'])
+  const [checkList, setCheckList] = useState<string[]>(['SP', 'SSR'])
 
   const [isIndeterminate, setIsIndeterminate] = useState(true)
   const handleCheckAllChange = function (e: CheckboxChangeEvent) {
@@ -133,7 +132,7 @@ export default function HeroList() {
   }
 
   const [checkAll, setCheckAll] = useState(false)
-  const handleCheckedRarityChange = function (value: CheckboxValueType[]) {
+  const handleCheckedRarityChange = function (value: string[]) {
     setCheckList(value)
     setIsIndeterminate(value.length > 0 && value.length < rarityList.length)
   }
