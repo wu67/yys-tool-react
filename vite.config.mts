@@ -25,6 +25,13 @@ export default defineConfig(({ mode }) => {
     },
     css: {
       devSourcemap: true,
+      preprocessorOptions: {
+        // 可以用来把样式混入每个页面
+        scss: {
+          api: 'modern',
+          //     additionalData: `@import '@/style/index.scss';`,
+        },
+      },
     },
     build: {
       // 设置最终构建的浏览器兼容目标
