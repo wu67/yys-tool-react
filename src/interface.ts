@@ -125,11 +125,11 @@ export interface IHero extends IBaseHero {
   /**
    * 收录状态. 用户手动维护的额外数据(未收录id), 导出器和痒痒熊导出的数据无法判断是否为已收录, 只能判断当前仓库中有没有该卡.
    */
-  included: string[]
+  included: boolean[]
   /**
    * 当前 式神录/仓库 中是否存在该卡
    */
-  have: string[]
+  have: boolean[]
   /**
    * 需求量。所有账号共计
    */

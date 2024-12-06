@@ -83,15 +83,10 @@ export default function HeroList() {
             }
           })
 
-          // console.log(notIncludedList, 'not include in map')
-          obj.included[index] =
-            notIncludedList[index].indexOf(item.id) !== -1 ? '0' : '1'
-          obj.have[index] =
-            Array.from(
-              new Set(user.data.heroes.map((item: any) => item.hero_id)),
-            ).indexOf(item.id) !== -1
-              ? '1'
-              : '0'
+          obj.included[index] = !notIncludedList[index].includes(item.id)
+          obj.have[index] = Array.from(
+            new Set(user.data.heroes.map((item: any) => item.hero_id)),
+          ).includes(item.id)
         })
 
         obj.holdings = obj.shards.reduce((sum, current) => {
@@ -237,19 +232,15 @@ export default function HeroList() {
           title: '收录状态',
           width: 110,
           filters: [
-            { text: '已收录', value: '1' },
-            { text: '未收录', value: '0' },
+            { text: '已收录', value: true },
+            { text: '未收录', value: false },
           ],
           onFilter: (value: string, row: any) =>
             filterIncluded(value, row, userIndex),
           render: (_value: any[], row: any) => {
             return (
-              <div
-                className={
-                  row.included[userIndex] === '0' ? 'not-included' : ''
-                }
-              >
-                {row.included[userIndex] === '1' ? '' : '未收录'}
+              <div className={row.included[userIndex] ? '' : 'not-included'}>
+                {row.included[userIndex] ? '' : '未收录'}
               </div>
             )
           },
@@ -259,15 +250,15 @@ export default function HeroList() {
           title: '仓检',
           width: 110,
           filters: [
-            { text: '仓库中有', value: '1' },
-            { text: '仓库中无', value: '0' },
+            { text: '仓库中有', value: true },
+            { text: '仓库中无', value: false },
           ],
           onFilter: (value: string, row: any) =>
             filterHave(value, row, userIndex),
           render: (_value: any[], row: any) => {
             return (
-              <div className={row.have[userIndex] === '0' ? 'have-not' : ''}>
-                {row.have[userIndex] === '1' ? '' : '仓库中无'}
+              <div className={row.have[userIndex] ? '' : 'have-not'}>
+                {row.have[userIndex] ? '' : '仓库中无'}
               </div>
             )
           },
