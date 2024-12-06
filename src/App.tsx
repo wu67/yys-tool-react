@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import type { MenuProps } from 'antd'
 import { Menu, Spin } from 'antd'
 import { useSetAtom } from 'jotai'
-import { Outlet, useNavigate, useLocation } from 'react-router-dom'
+import { Outlet, useNavigate, useLocation } from 'react-router'
 
 import allHeroJSON from '@/assets/all_hero.json'
 import damoJSON from '@/assets/damo.json'
