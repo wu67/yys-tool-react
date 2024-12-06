@@ -96,7 +96,7 @@ export default function HeroList() {
 
         const notIncludedCount = obj.included.reduce((sum, current) => {
           // 检查收录状态，根据收录状态计算总需求量
-          return current === '0' ? ++sum : sum
+          return current ? sum : ++sum
         }, 0)
 
         const temp = obj.bookMaxShards * notIncludedCount - obj.holdings
