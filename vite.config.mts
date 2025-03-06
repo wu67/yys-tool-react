@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
+import tailwindcss from '@tailwindcss/vite'
 // import type { PluginOption } from 'vite'
 // import { visualizer } from 'rollup-plugin-visualizer'
 
@@ -9,27 +10,20 @@ export default defineConfig(({ mode }) => {
     base: mode === 'production' ? '/yys-tool-react/' : '/',
     plugins: [
       react(),
+      tailwindcss(),
       // visualizer({
       //   emitFile: true,
       //   filename: 'stats.html',
       // }) as PluginOption,
     ],
-    server: {
-      host: '0.0.0.0',
-      port: 8888,
-    },
-    resolve: {
-      alias: {
-        '@': '/src/',
-      },
-    },
+    server: { host: '0.0.0.0', port: 8888 },
+    resolve: { alias: { '@': '/src/' } },
     css: {
       devSourcemap: true,
       preprocessorOptions: {
         // 可以用来把样式混入每个页面
         scss: {
           api: 'modern',
-          //     additionalData: `@import '@/style/index.scss';`,
         },
       },
     },
@@ -43,13 +37,7 @@ export default defineConfig(({ mode }) => {
       // 单文件输出超出该大小会警告, 单位kb
       chunkSizeWarningLimit: 1000,
       // roolup 配置项. https://rollupjs.org/configuration-options
-      rollupOptions: {
-        output: {
-          manualChunks: {
-            antd: ['antd'],
-          },
-        },
-      },
+      rollupOptions: { output: { manualChunks: { antd: ['antd'] } } },
     },
   }
 })
