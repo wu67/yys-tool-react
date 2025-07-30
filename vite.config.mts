@@ -20,12 +20,6 @@ export default defineConfig(({ mode }) => {
     resolve: { alias: { '@': '/src/' } },
     css: {
       devSourcemap: true,
-      preprocessorOptions: {
-        // 可以用来把样式混入每个页面
-        scss: {
-          api: 'modern',
-        },
-      },
     },
     build: {
       // 设置最终构建的浏览器兼容目标
@@ -35,9 +29,15 @@ export default defineConfig(({ mode }) => {
       // 启用/禁用 gzip 压缩大小报告
       reportCompressedSize: mode !== 'development',
       // 单文件输出超出该大小会警告, 单位kb
-      chunkSizeWarningLimit: 1000,
+      chunkSizeWarningLimit: 1500,
       // roolup 配置项. https://rollupjs.org/configuration-options
-      rollupOptions: { output: { manualChunks: { antd: ['antd'] } } },
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            // antd: ['antd'],
+          },
+        },
+      },
     },
   }
 })
