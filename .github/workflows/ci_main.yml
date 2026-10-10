@@ -30,7 +30,7 @@ jobs:
         run: npm i --no-audit --no-fund && npm run build
 
       - name: upload files
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v5
         with:
           name: build-dist
           path: dist
@@ -45,6 +45,6 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
         with:
           artifact_name: build-dist
