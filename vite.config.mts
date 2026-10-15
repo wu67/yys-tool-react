@@ -30,14 +30,6 @@ export default defineConfig(({ mode }) => {
       reportCompressedSize: mode !== 'development',
       // 单文件输出超出该大小会警告, 单位kb
       chunkSizeWarningLimit: 1500,
-      // roolup 配置项. https://rollupjs.org/configuration-options
-      rollupOptions: {
-        output: {
-          manualChunks: {
-            // antd: ['antd'],
-          },
-        },
-      },
     },
   }
 })
